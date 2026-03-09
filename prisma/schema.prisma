@@ -22,6 +22,9 @@ model Site {
   speedTests  SpeedTest[]
   searchData  SearchAnalytics[]
   competitors Competitor[]
+  backlinks   Backlink[]
+  sitemapChecks SitemapCheck[]
+  schemaAnalyses SchemaAnalysis[]
 }
 
 model Page {
@@ -152,4 +155,49 @@ model CompetitorAnalysis {
   createdAt    DateTime @default(now())
 
   competitor Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+}
+
+model Backlink {
+  id          String   @id @default(cuid())
+  siteId      String
+  sourceUrl   String   // The external page linking to us
+  targetUrl   String   // Our page being linked to
+  anchorText  String?
+  isDoFollow  Boolean  @default(true)
+  firstSeen   DateTime @default(now())
+  lastChecked DateTime @default(now())
+  isLive      Boolean  @default(true)
+  statusCode  Int?
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, sourceUrl, targetUrl])
+}
+
+model SitemapCheck {
+  id          String   @id @default(cuid())
+  siteId      String
+  sitemapUrl  String
+  urlCount    Int      @default(0)
+  validUrls   Int      @default(0)
+  brokenUrls  Int      @default(0)
+  warnings    Int      @default(0)
+  details     String   // JSON string of check results
+  createdAt   DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+}
+
+model SchemaAnalysis {
+  id         String   @id @default(cuid())
+  siteId     String
+  pageUrl    String
+  schemas    String   // JSON string of detected schema markup
+  score      Int      @default(0)
+  issues     String   // JSON string of schema issues
+  suggestions String  // JSON string of AI suggestions
+  provider   String   @default("openai")
+  createdAt  DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 }

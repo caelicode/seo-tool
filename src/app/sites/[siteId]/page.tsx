@@ -16,6 +16,9 @@ import {
   Sparkles,
   Heart,
   Users,
+  Link2,
+  Map,
+  Code,
 } from "lucide-react";
 
 interface SiteDetail {
@@ -273,6 +276,27 @@ export default function SiteDetailPage() {
           description="Track competitors and get AI-powered competitive analysis and gap identification."
           status="Ready"
           href={`/sites/${site.id}/competitors`}
+        />
+        <FeatureCard
+          icon={Link2}
+          title="Backlink Monitor"
+          description="Track and verify external links pointing to your site. Monitor DoFollow vs NoFollow status."
+          status="Ready"
+          href={`/sites/${site.id}/backlinks`}
+        />
+        <FeatureCard
+          icon={Map}
+          title="Sitemap Validator"
+          description="Validate sitemap structure, check for broken URLs, and ensure proper indexing."
+          status="Ready"
+          href={`/sites/${site.id}/sitemap`}
+        />
+        <FeatureCard
+          icon={Code}
+          title="Schema Markup"
+          description="Detect and validate structured data (JSON-LD, Microdata, RDFa) with AI recommendations."
+          status="Ready"
+          href={`/sites/${site.id}/schema`}
         />
       </div>
 
