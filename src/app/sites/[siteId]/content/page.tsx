@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -82,8 +82,14 @@ interface SEOAnalysis {
 
 interface AnalysisResult {
   url: string;
+  provider: string;
   pageContent: PageSummary;
   analysis: SEOAnalysis;
+}
+
+interface ProviderOption {
+  provider: string;
+  label: string;
 }
 
 export default function ContentOptimizerPage() {
@@ -92,9 +98,31 @@ export default function ContentOptimizerPage() {
 
   const [url, setUrl] = useState("");
   const [targetKeyword, setTargetKeyword] = useState("");
+  const [provider, setProvider] = useState("anthropic");
+  const [providers, setProviders] = useState<ProviderOption[]>([]);
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
+
+  // Fetch available providers on mount
+  useEffect(() => {
+    const fetchProviders = async () => {
+      try {
+        const res = await fetch("/api/content/optimize");
+        if (res.ok) {
+          const data = await res.json();
+          setProviders(data.providers || []);
+          // Default to first available provider
+          if (data.providers?.length > 0) {
+            setProvider(data.providers[0].provider);
+          }
+        }
+      } catch {
+        // Providers will show empty, user will see error on analyze
+      }
+    };
+    fetchProviders();
+  }, []);
 
   const handleAnalyze = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,6 +139,7 @@ export default function ContentOptimizerPage() {
         body: JSON.stringify({
           url: url.trim(),
           targetKeyword: targetKeyword.trim() || undefined,
+          provider,
         }),
       });
 
@@ -152,6 +181,12 @@ export default function ContentOptimizerPage() {
         onSubmit={handleAnalyze}
         className="mb-6 rounded-xl border border-zinc-200 bg-white p-5"
       >
+        {providers.length === 0 && (
+          <div className="mb-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-700">
+            No AI providers configured. Add <code className="rounded bg-amber-100 px-1">ANTHROPIC_API_KEY</code> and/or{" "}
+            <code className="rounded bg-amber-100 px-1">OPENAI_API_KEY</code> to your .env file, then restart the dev server.
+          </div>
+        )}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
             <label className="mb-1 block text-xs font-medium text-zinc-500">
@@ -178,9 +213,27 @@ export default function ContentOptimizerPage() {
               className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
             />
           </div>
+          {providers.length > 1 && (
+            <div className="sm:w-44">
+              <label className="mb-1 block text-xs font-medium text-zinc-500">
+                AI Model
+              </label>
+              <select
+                value={provider}
+                onChange={(e) => setProvider(e.target.value)}
+                className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+              >
+                {providers.map((p) => (
+                  <option key={p.provider} value={p.provider}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <button
             type="submit"
-            disabled={analyzing}
+            disabled={analyzing || providers.length === 0}
             className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
           >
             <Sparkles className={`h-4 w-4 ${analyzing ? "animate-pulse" : ""}`} />
@@ -222,6 +275,9 @@ export default function ContentOptimizerPage() {
               </h2>
               <p className="mt-1 text-sm text-zinc-500">
                 Analyzed: {result.url}
+                <span className="ml-2 rounded bg-zinc-100 px-1.5 py-0.5 text-xs font-medium text-zinc-600">
+                  {result.provider === "openai" ? "GPT-4o" : "Claude"}
+                </span>
               </p>
               <div className="mt-3">
                 <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">

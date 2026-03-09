@@ -1,4 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
+
+export type AIProvider = "anthropic" | "openai";
 
 const SEO_ANALYSIS_PROMPT = `You are an expert SEO consultant. Analyze the following web page content and provide actionable optimization suggestions.
 
@@ -138,6 +141,20 @@ export interface SEOAnalysis {
 }
 
 /**
+ * Check which AI providers are configured.
+ */
+export function getAvailableProviders(): { provider: AIProvider; label: string }[] {
+  const providers: { provider: AIProvider; label: string }[] = [];
+  if (process.env.ANTHROPIC_API_KEY) {
+    providers.push({ provider: "anthropic", label: "Claude (Anthropic)" });
+  }
+  if (process.env.OPENAI_API_KEY) {
+    providers.push({ provider: "openai", label: "GPT-4o (OpenAI)" });
+  }
+  return providers;
+}
+
+/**
  * Fetch and parse a web page for SEO-relevant content.
  */
 export async function fetchPageContent(url: string): Promise<PageContent> {
@@ -239,22 +256,10 @@ export async function fetchPageContent(url: string): Promise<PageContent> {
 }
 
 /**
- * Analyze page content using Anthropic Claude for SEO recommendations.
+ * Build the page context string for the AI prompt.
  */
-export async function analyzeContent(
-  pageContent: PageContent,
-  targetKeyword?: string
-): Promise<SEOAnalysis> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    throw new Error(
-      "ANTHROPIC_API_KEY is not set. Add it to your .env file to use AI content optimization."
-    );
-  }
-
-  const client = new Anthropic({ apiKey });
-
-  const pageContext = `
+function buildPageContext(pageContent: PageContent, targetKeyword?: string): string {
+  return `
 URL: ${pageContent.url}
 Title: ${pageContent.title || "(none)"}
 Meta Description: ${pageContent.metaDescription || "(none)"}
@@ -271,6 +276,44 @@ ${targetKeyword ? `Target Keyword: ${targetKeyword}` : ""}
 Body Text (first 3000 chars):
 ${pageContent.bodyText.substring(0, 3000)}
 `;
+}
+
+/**
+ * Parse JSON from AI response text, handling markdown code blocks.
+ */
+function parseAIResponse(text: string): SEOAnalysis {
+  let jsonStr = text.trim();
+  const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (codeBlockMatch) {
+    jsonStr = codeBlockMatch[1].trim();
+  }
+
+  try {
+    return JSON.parse(jsonStr) as SEOAnalysis;
+  } catch {
+    throw new Error(
+      "Failed to parse AI response as JSON. Raw response: " +
+        jsonStr.substring(0, 200)
+    );
+  }
+}
+
+/**
+ * Analyze content using Anthropic Claude.
+ */
+async function analyzeWithAnthropic(
+  pageContent: PageContent,
+  targetKeyword?: string
+): Promise<SEOAnalysis> {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    throw new Error(
+      "ANTHROPIC_API_KEY is not set. Add it to your .env file."
+    );
+  }
+
+  const client = new Anthropic({ apiKey });
+  const pageContext = buildPageContext(pageContent, targetKeyword);
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
@@ -283,22 +326,65 @@ ${pageContent.bodyText.substring(0, 3000)}
     ],
   });
 
-  // Extract text from the response
   const textBlock = response.content.find((block) => block.type === "text");
   if (!textBlock || textBlock.type !== "text") {
-    throw new Error("No text response from AI");
+    throw new Error("No text response from Anthropic");
   }
 
-  // Parse JSON from the response (handle possible markdown code blocks)
-  let jsonStr = textBlock.text.trim();
-  const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (codeBlockMatch) {
-    jsonStr = codeBlockMatch[1].trim();
+  return parseAIResponse(textBlock.text);
+}
+
+/**
+ * Analyze content using OpenAI GPT-4o.
+ */
+async function analyzeWithOpenAI(
+  pageContent: PageContent,
+  targetKeyword?: string
+): Promise<SEOAnalysis> {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error(
+      "OPENAI_API_KEY is not set. Add it to your .env file."
+    );
   }
 
-  try {
-    return JSON.parse(jsonStr) as SEOAnalysis;
-  } catch {
-    throw new Error("Failed to parse AI response as JSON. Raw response: " + jsonStr.substring(0, 200));
+  const client = new OpenAI({ apiKey });
+  const pageContext = buildPageContext(pageContent, targetKeyword);
+
+  const response = await client.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: 2000,
+    response_format: { type: "json_object" },
+    messages: [
+      {
+        role: "system",
+        content: SEO_ANALYSIS_PROMPT,
+      },
+      {
+        role: "user",
+        content: `Here is the page to analyze:\n${pageContext}`,
+      },
+    ],
+  });
+
+  const text = response.choices[0]?.message?.content;
+  if (!text) {
+    throw new Error("No response from OpenAI");
   }
+
+  return parseAIResponse(text);
+}
+
+/**
+ * Analyze page content using the specified AI provider.
+ */
+export async function analyzeContent(
+  pageContent: PageContent,
+  targetKeyword?: string,
+  provider: AIProvider = "anthropic"
+): Promise<SEOAnalysis> {
+  if (provider === "openai") {
+    return analyzeWithOpenAI(pageContent, targetKeyword);
+  }
+  return analyzeWithAnthropic(pageContent, targetKeyword);
 }
