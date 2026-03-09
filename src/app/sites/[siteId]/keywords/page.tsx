@@ -13,6 +13,9 @@ import {
   Minus,
   Search,
   Zap,
+  Sparkles,
+  Check,
+  X,
 } from "lucide-react";
 
 interface KeywordData {
@@ -33,6 +36,16 @@ interface KeywordData {
   }[];
 }
 
+interface KeywordSuggestion {
+  keyword: string;
+  category: string;
+  searchVolume: string;
+  competition: string;
+  intent: string;
+  priority: number;
+  reasoning: string;
+}
+
 export default function KeywordsPage() {
   const params = useParams();
   const siteId = params.siteId as string;
@@ -45,6 +58,17 @@ export default function KeywordsPage() {
   const [newKeyword, setNewKeyword] = useState("");
   const [newPageUrl, setNewPageUrl] = useState("");
   const [adding, setAdding] = useState(false);
+
+  // Research state
+  const [showResearch, setShowResearch] = useState(false);
+  const [researching, setResearching] = useState(false);
+  const [researchBusiness, setResearchBusiness] = useState("");
+  const [researchLocation, setResearchLocation] = useState("");
+  const [researchServices, setResearchServices] = useState("");
+  const [suggestions, setSuggestions] = useState<KeywordSuggestion[]>([]);
+  const [researchSummary, setResearchSummary] = useState("");
+  const [selectedSuggestions, setSelectedSuggestions] = useState<Set<string>>(new Set());
+  const [addingSuggestions, setAddingSuggestions] = useState(false);
 
   const fetchKeywords = useCallback(async () => {
     try {
@@ -128,6 +152,92 @@ export default function KeywordsPage() {
     }
   };
 
+  const handleResearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!researchBusiness.trim() || !researchLocation.trim()) return;
+
+    setResearching(true);
+    setError(null);
+    setSuggestions([]);
+    setSelectedSuggestions(new Set());
+
+    try {
+      const res = await fetch("/api/keywords/research", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          business: researchBusiness.trim(),
+          location: researchLocation.trim(),
+          services: researchServices.trim() || undefined,
+          website: undefined, // Could pull from site data
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Research failed");
+      }
+
+      const data = await res.json();
+      setSuggestions(data.keywords || []);
+      setResearchSummary(data.summary || "");
+      // Auto-select priority 1 and 2 keywords
+      const autoSelect = new Set<string>();
+      for (const kw of data.keywords || []) {
+        if (kw.priority <= 2) autoSelect.add(kw.keyword);
+      }
+      setSelectedSuggestions(autoSelect);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Research failed");
+    } finally {
+      setResearching(false);
+    }
+  };
+
+  const toggleSuggestion = (keyword: string) => {
+    setSelectedSuggestions((prev) => {
+      const next = new Set(prev);
+      if (next.has(keyword)) {
+        next.delete(keyword);
+      } else {
+        next.add(keyword);
+      }
+      return next;
+    });
+  };
+
+  const addSelectedKeywords = async () => {
+    if (selectedSuggestions.size === 0) return;
+
+    setAddingSuggestions(true);
+    setError(null);
+    let added = 0;
+
+    // Get existing keywords to avoid duplicates
+    const existingSet = new Set(keywords.map((k) => k.keyword.toLowerCase()));
+
+    for (const keyword of selectedSuggestions) {
+      if (existingSet.has(keyword.toLowerCase())) continue;
+      try {
+        const res = await fetch("/api/keywords", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ siteId, keyword }),
+        });
+        if (res.ok) added++;
+      } catch {
+        // Skip failures (likely duplicates)
+      }
+    }
+
+    await fetchKeywords();
+    setAddingSuggestions(false);
+    setSuggestions([]);
+    setShowResearch(false);
+    setSelectedSuggestions(new Set());
+    alert(`Added ${added} new keywords to tracking.`);
+  };
+
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -162,7 +272,7 @@ export default function KeywordsPage() {
             Track search rankings, clicks, and impressions for your target keywords.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => handleSync(false)}
             disabled={syncing}
@@ -179,6 +289,13 @@ export default function KeywordsPage() {
           >
             <Zap className="h-4 w-4" />
             Auto-Discover
+          </button>
+          <button
+            onClick={() => setShowResearch(!showResearch)}
+            className="inline-flex items-center gap-2 rounded-lg bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-100"
+          >
+            <Sparkles className="h-4 w-4" />
+            Research Keywords
           </button>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
@@ -233,6 +350,187 @@ export default function KeywordsPage() {
               {adding ? "Adding..." : "Add"}
             </button>
           </form>
+        </div>
+      )}
+
+      {/* AI Keyword Research panel */}
+      {showResearch && (
+        <div className="mb-6 rounded-xl border border-purple-200 bg-white p-5">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-purple-600" />
+              <h3 className="text-sm font-semibold text-zinc-900">
+                AI Keyword Research
+              </h3>
+            </div>
+            <button
+              onClick={() => { setShowResearch(false); setSuggestions([]); }}
+              className="text-zinc-400 hover:text-zinc-600"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {suggestions.length === 0 ? (
+            <form onSubmit={handleResearch} className="space-y-3">
+              <p className="text-sm text-zinc-500">
+                Describe your business and location, and AI will generate keyword ideas
+                tailored to your market.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div>
+                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                    Business Type *
+                  </label>
+                  <input
+                    type="text"
+                    value={researchBusiness}
+                    onChange={(e) => setResearchBusiness(e.target.value)}
+                    placeholder="e.g. Hair braiding salon"
+                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                    Location *
+                  </label>
+                  <input
+                    type="text"
+                    value={researchLocation}
+                    onChange={(e) => setResearchLocation(e.target.value)}
+                    placeholder="e.g. Forney, TX"
+                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                    Services (optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={researchServices}
+                    onChange={(e) => setResearchServices(e.target.value)}
+                    placeholder="e.g. braids, locs, hair installation, weaves"
+                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={researching}
+                className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-5 py-2 text-sm font-medium text-white hover:bg-purple-700 disabled:opacity-50"
+              >
+                <Sparkles className={`h-4 w-4 ${researching ? "animate-pulse" : ""}`} />
+                {researching ? "Researching... (10-20s)" : "Find Keywords"}
+              </button>
+            </form>
+          ) : (
+            <div>
+              {researchSummary && (
+                <p className="mb-4 text-sm text-zinc-600">{researchSummary}</p>
+              )}
+
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-xs text-zinc-500">
+                  {selectedSuggestions.size} of {suggestions.length} selected
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setSelectedSuggestions(new Set(suggestions.map((s) => s.keyword)))}
+                    className="text-xs text-purple-600 hover:text-purple-800"
+                  >
+                    Select All
+                  </button>
+                  <button
+                    onClick={() => setSelectedSuggestions(new Set())}
+                    className="text-xs text-zinc-500 hover:text-zinc-700"
+                  >
+                    Deselect All
+                  </button>
+                </div>
+              </div>
+
+              <div className="mb-4 max-h-80 overflow-y-auto rounded-lg border border-zinc-200">
+                <table className="w-full">
+                  <thead className="sticky top-0 bg-zinc-50">
+                    <tr className="text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                      <th className="px-3 py-2 w-8" />
+                      <th className="px-3 py-2">Keyword</th>
+                      <th className="px-3 py-2">Category</th>
+                      <th className="px-3 py-2">Volume</th>
+                      <th className="px-3 py-2">Competition</th>
+                      <th className="px-3 py-2">Intent</th>
+                      <th className="px-3 py-2">Priority</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-100">
+                    {suggestions.map((s) => {
+                      const isTracked = keywords.some(
+                        (k) => k.keyword.toLowerCase() === s.keyword.toLowerCase()
+                      );
+                      return (
+                        <tr
+                          key={s.keyword}
+                          className={`text-sm ${isTracked ? "bg-green-50 opacity-60" : "hover:bg-zinc-50"}`}
+                        >
+                          <td className="px-3 py-2">
+                            {isTracked ? (
+                              <Check className="h-4 w-4 text-green-600" />
+                            ) : (
+                              <input
+                                type="checkbox"
+                                checked={selectedSuggestions.has(s.keyword)}
+                                onChange={() => toggleSuggestion(s.keyword)}
+                                className="h-4 w-4 rounded border-zinc-300"
+                              />
+                            )}
+                          </td>
+                          <td className="px-3 py-2 font-medium text-zinc-900">
+                            {s.keyword}
+                            {isTracked && (
+                              <span className="ml-2 text-xs text-green-600">already tracked</span>
+                            )}
+                          </td>
+                          <td className="px-3 py-2 text-zinc-500">{s.category}</td>
+                          <td className="px-3 py-2">
+                            <VolumeBadge level={s.searchVolume} />
+                          </td>
+                          <td className="px-3 py-2">
+                            <CompetitionBadge level={s.competition} />
+                          </td>
+                          <td className="px-3 py-2 text-zinc-500">{s.intent}</td>
+                          <td className="px-3 py-2">
+                            <PriorityBadge priority={s.priority} />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={addSelectedKeywords}
+                  disabled={addingSuggestions || selectedSuggestions.size === 0}
+                  className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-5 py-2 text-sm font-medium text-white hover:bg-purple-700 disabled:opacity-50"
+                >
+                  <Plus className="h-4 w-4" />
+                  {addingSuggestions
+                    ? "Adding..."
+                    : `Add ${selectedSuggestions.size} Keywords to Tracking`}
+                </button>
+                <button
+                  onClick={() => setSuggestions([])}
+                  className="rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-200"
+                >
+                  Research Again
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -341,6 +639,57 @@ export default function KeywordsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+function VolumeBadge({ level }: { level: string }) {
+  const colors: Record<string, string> = {
+    high: "bg-green-100 text-green-700",
+    medium: "bg-yellow-100 text-yellow-700",
+    low: "bg-zinc-100 text-zinc-600",
+  };
+  const cls = colors[level.toLowerCase()] || colors.medium;
+  return (
+    <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${cls}`}>
+      {level}
+    </span>
+  );
+}
+
+function CompetitionBadge({ level }: { level: string }) {
+  const colors: Record<string, string> = {
+    high: "bg-red-100 text-red-700",
+    medium: "bg-orange-100 text-orange-700",
+    low: "bg-green-100 text-green-700",
+  };
+  const cls = colors[level.toLowerCase()] || colors.medium;
+  return (
+    <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${cls}`}>
+      {level}
+    </span>
+  );
+}
+
+function PriorityBadge({ priority }: { priority: number }) {
+  const colors: Record<number, string> = {
+    1: "bg-purple-100 text-purple-700",
+    2: "bg-blue-100 text-blue-700",
+    3: "bg-zinc-100 text-zinc-600",
+    4: "bg-zinc-50 text-zinc-400",
+    5: "bg-zinc-50 text-zinc-400",
+  };
+  const cls = colors[priority] || colors[3];
+  const labels: Record<number, string> = {
+    1: "Top",
+    2: "High",
+    3: "Medium",
+    4: "Low",
+    5: "Low",
+  };
+  return (
+    <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${cls}`}>
+      P{priority} {labels[priority] || ""}
+    </span>
   );
 }
 
