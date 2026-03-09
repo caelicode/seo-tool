@@ -1,0 +1,650 @@
+[?25l[2K[1G[36m?[39m [1mWould you like to use React Compiler?[22m [90m›[39m [36m[4mNo[39m[24m [90m/[39m Yes[2K[1G[2K[1G[32m✔[39m [1mWould you like to use React Compiler?[22m [90m…[39m [36m[4mNo[39m[24m [90m/[39m Yes
+[?25hCreating a new Next.js app in /sessions/bold-fervent-ride/mnt/outputs/seo-tool.
+
+Using npm.
+
+Initializing project with template: app-tw 
+
+
+Installing dependencies:
+- next
+- react
+- react-dom
+
+Installing devDependencies:
+- @tailwindcss/postcss
+- @types/node
+- @types/react
+- @types/react-dom
+- eslint
+- eslint-config-next
+- tailwindcss
+- typescript
+
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-wasm32-wasi',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-wasm32-wasi'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-wasm32-wasi'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-ia32-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-ia32-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-ia32-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-ppc64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-ppc64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-ppc64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-musleabihf',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-musleabihf'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-musleabihf'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-freebsd-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-freebsd-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-freebsd-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm-eabi',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm-eabi'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-android-arm-eabi'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-x64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-ia32',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-ia32'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-ia32'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-x64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-x64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-x64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-s390x-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-s390x-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-s390x-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-linux-riscv64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-arm64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-arm64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-win32-arm64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linuxmusl-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-ppc64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-ppc64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-ppc64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-wasm32-wasi',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-wasm32-wasi'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@unrs/resolver-binding-wasm32-wasi'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-arm',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-arm'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-arm'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-s390x',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-s390x'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-s390x'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-riscv64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-riscv64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-riscv64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-s390x',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-s390x'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-s390x'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-arm',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-arm'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-arm'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-wasm32',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-wasm32'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-wasm32'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-x64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-x64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-x64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-riscv64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-riscv64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-riscv64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-linux-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-arm64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-arm64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-win32-arm64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-win32-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-ppc64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-ppc64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linux-ppc64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-arm64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-arm64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-arm64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-x64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-x64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-x64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-win32-x64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@img/sharp-libvips-linuxmusl-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-arm64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-arm64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-linux-arm64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm-gnueabihf',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm-gnueabihf'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm-gnueabihf'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@next/swc-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-x64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-x64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-arm64-msvc',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-arm64-msvc'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-x64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-freebsd-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-freebsd-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-freebsd-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-linux-arm64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-x64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-android-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-android-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-android-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-android-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-android-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/lightningcss-android-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm64-musl',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm64-musl'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-gnu',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-gnu'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-linux-x64-gnu'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-arm64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-arm64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-darwin-arm64'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-freebsd-x64',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-freebsd-x64'] {
+npm warn cleanup       errno: -1,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/sessions/bold-fervent-ride/mnt/outputs/seo-tool/node_modules/@tailwindcss/oxide-freebsd-x64'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+
+added 360 packages, and audited 361 packages in 48s
+
+144 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Generating route types...
+✓ Types generated successfully
+
+Success! Created seo-tool at /sessions/bold-fervent-ride/mnt/outputs/seo-tool
+

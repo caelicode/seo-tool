@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Site {
+  id            String   @id @default(cuid())
+  domain        String   @unique
+  name          String
+  sitemapUrl    String?
+  gscPropertyId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  crawls     Crawl[]
+  pages      Page[]
+  keywords   Keyword[]
+  speedTests SpeedTest[]
+  searchData SearchAnalytics[]
+}
+
+model Page {
+  id          String    @id @default(cuid())
+  siteId      String
+  url         String
+  title       String?
+  description String?
+  h1          String?
+  statusCode  Int?
+  indexStatus String?
+  lastCrawled DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  site   Site        @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  issues PageIssue[]
+
+  @@unique([siteId, url])
+}
+
+model PageIssue {
+  id        String   @id @default(cuid())
+  pageId    String
+  type      String
+  severity  String
+  detail    String
+  crawlId   String
+  createdAt DateTime @default(now())
+
+  page  Page  @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  crawl Crawl @relation(fields: [crawlId], references: [id], onDelete: Cascade)
+}
+
+model Crawl {
+  id          String    @id @default(cuid())
+  siteId      String
+  status      String    @default("pending")
+  pagesFound  Int       @default(0)
+  issuesFound Int       @default(0)
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+
+  site   Site        @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  issues PageIssue[]
+}
+
+model Keyword {
+  id        String   @id @default(cuid())
+  siteId    String
+  keyword   String
+  pageUrl   String?
+  createdAt DateTime @default(now())
+
+  site     Site             @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  rankings KeywordRanking[]
+
+  @@unique([siteId, keyword])
+}
+
+model KeywordRanking {
+  id          String   @id @default(cuid())
+  keywordId   String
+  position    Float
+  clicks      Int      @default(0)
+  impressions Int      @default(0)
+  ctr         Float    @default(0)
+  date        DateTime
+
+  keyword Keyword @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+
+  @@unique([keywordId, date])
+}
+
+model SearchAnalytics {
+  id          String   @id @default(cuid())
+  siteId      String
+  date        DateTime
+  query       String
+  page        String
+  clicks      Int      @default(0)
+  impressions Int      @default(0)
+  ctr         Float    @default(0)
+  position    Float    @default(0)
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, date, query, page])
+}
+
+model SpeedTest {
+  id               String   @id @default(cuid())
+  siteId           String
+  url              String
+  strategy         String
+  performanceScore Float
+  lcp              Float?
+  fid              Float?
+  cls              Float?
+  inp              Float?
+  ttfb             Float?
+  createdAt        DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,72 @@
+{
+  "cachedGrowthBookFeatures": {
+    "tengu_1p_event_batch_config": {
+      "scheduledDelayMillis": 10000,
+      "maxExportBatchSize": 400,
+      "maxQueueSize": 8192
+    },
+    "tengu_event_sampling_config": {},
+    "tengu_log_segment_events": false,
+    "tengu_log_datadog_events": true,
+    "tengu_marble_anvil": true,
+    "tengu_tool_pear": false,
+    "tengu_scarf_coffee": false,
+    "tengu_penguins_enabled": true,
+    "tengu_keybinding_customization_release": true,
+    "tengu_ccr_bridge": false,
+    "tengu_thinkback": false,
+    "tengu_claudeai_mcp_connectors": true,
+    "tengu_oboe": true,
+    "tengu_chomp_inflection": false,
+    "tengu_marble_sandcastle": true,
+    "tengu_penguins_off": null,
+    "tengu_copper_lantern": false,
+    "tengu_marble_lantern_disabled": false,
+    "tengu_mcp_elicitation": false,
+    "tengu_pebble_leaf_prune": false,
+    "tengu_vinteuil_phrase": true,
+    "tengu_mulberry_fog": false,
+    "tengu_coral_fern": true,
+    "tengu_system_prompt_global_cache": true,
+    "enhanced_telemetry_beta": false,
+    "tengu_moth_copse": false,
+    "tengu_streaming_tool_execution2": true,
+    "tengu_tool_search_unsupported_models": [
+      "haiku"
+    ],
+    "tengu_fgts": false,
+    "tengu_plan_mode_interview_phase": false,
+    "tengu_attribution_header": true,
+    "tengu_prompt_cache_1h_config": {
+      "allowlist": [
+        "repl_main_thread*",
+        "sdk",
+        "auto_mode"
+      ]
+    },
+    "tengu_crystal_beam": {
+      "budgetTokens": 0
+    },
+    "tengu_tool_input_aliasing": false,
+    "tengu_coral_whistle": false,
+    "tengu_oak_drum": false,
+    "tengu_bergotte_lantern": false,
+    "tengu_swann_brevity": "focused"
+  },
+  "oauthAccount": {
+    "accountUuid": "67a0a022-671e-4adc-93a8-266b9ae03038",
+    "emailAddress": "bertrandmbanwi@gmail.com",
+    "organizationUuid": "625b9c24-99e9-4f11-b5f6-56c609df7827"
+  },
+  "firstStartTime": "2026-03-08T23:27:29.779Z",
+  "opusProMigrationComplete": true,
+  "sonnet1m45MigrationComplete": true,
+  "userID": "3b8e09f449c81cad12e309417ff1125dd75f45ac70c8f9b8e24758b4113d312e",
+  "cachedExtraUsageDisabledReason": "org_level_disabled",
+  "toolUsage": {
+    "Glob": {
+      "usageCount": 1,
+      "lastUsedAt": 1773012457922
+    }
+  }
+}
