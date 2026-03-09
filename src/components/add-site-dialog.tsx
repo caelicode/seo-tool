@@ -42,10 +42,10 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-zinc-900">Add New Site</h2>
+          <h2 className="text-lg font-semibold text-slate-900">Add New Site</h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600"
+            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
           >
             <X className="h-5 w-5" />
           </button>
@@ -59,7 +59,7 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-zinc-700">
+            <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-slate-700">
               Site Name *
             </label>
             <input
@@ -69,12 +69,12 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
               placeholder="My Website"
               value={formData.name}
               onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-slate-500"
             />
           </div>
 
           <div>
-            <label htmlFor="domain" className="mb-1.5 block text-sm font-medium text-zinc-700">
+            <label htmlFor="domain" className="mb-1.5 block text-sm font-medium text-slate-700">
               Domain *
             </label>
             <input
@@ -84,15 +84,15 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
               placeholder="example.com"
               value={formData.domain}
               onChange={(e) => setFormData((prev) => ({ ...prev, domain: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-slate-500"
             />
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-slate-500">
               Enter without protocol (e.g., example.com)
             </p>
           </div>
 
           <div>
-            <label htmlFor="sitemapUrl" className="mb-1.5 block text-sm font-medium text-zinc-700">
+            <label htmlFor="sitemapUrl" className="mb-1.5 block text-sm font-medium text-slate-700">
               Sitemap URL
             </label>
             <input
@@ -101,12 +101,12 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
               placeholder="https://example.com/sitemap.xml"
               value={formData.sitemapUrl}
               onChange={(e) => setFormData((prev) => ({ ...prev, sitemapUrl: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-slate-500"
             />
           </div>
 
           <div>
-            <label htmlFor="gscPropertyId" className="mb-1.5 block text-sm font-medium text-zinc-700">
+            <label htmlFor="gscPropertyId" className="mb-1.5 block text-sm font-medium text-slate-700">
               Google Search Console Property
             </label>
             <input
@@ -115,9 +115,9 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
               placeholder="sc-domain:example.com"
               value={formData.gscPropertyId}
               onChange={(e) => setFormData((prev) => ({ ...prev, gscPropertyId: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-slate-500"
             />
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-slate-500">
               Usually sc-domain:yourdomain.com or https://yourdomain.com/
             </p>
           </div>
@@ -126,14 +126,14 @@ export function AddSiteDialog({ open, onClose, onSubmit }: AddSiteDialogProps) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800 disabled:opacity-50"
             >
               {loading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

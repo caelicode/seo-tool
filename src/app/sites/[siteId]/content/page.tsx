@@ -160,17 +160,17 @@ export default function ContentOptimizerPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
       </Link>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-zinc-900">
+        <h1 className="text-2xl font-bold text-slate-900">
           AI Content Optimizer
         </h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-slate-500">
           Analyze any page and get AI-powered SEO recommendations for titles,
           meta descriptions, headings, and more.
         </p>
@@ -179,7 +179,7 @@ export default function ContentOptimizerPage() {
       {/* Input form */}
       <form
         onSubmit={handleAnalyze}
-        className="mb-6 rounded-xl border border-zinc-200 bg-white p-5"
+        className="mb-6 rounded-xl border border-slate-200 bg-white p-5"
       >
         {providers.length === 0 && (
           <div className="mb-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-700">
@@ -189,7 +189,7 @@ export default function ContentOptimizerPage() {
         )}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
-            <label className="mb-1 block text-xs font-medium text-zinc-500">
+            <label className="mb-1 block text-xs font-medium text-slate-500">
               Page URL
             </label>
             <input
@@ -197,12 +197,12 @@ export default function ContentOptimizerPage() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://example.com/page"
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
               required
             />
           </div>
           <div className="sm:w-48">
-            <label className="mb-1 block text-xs font-medium text-zinc-500">
+            <label className="mb-1 block text-xs font-medium text-slate-500">
               Target Keyword (optional)
             </label>
             <input
@@ -210,18 +210,18 @@ export default function ContentOptimizerPage() {
               value={targetKeyword}
               onChange={(e) => setTargetKeyword(e.target.value)}
               placeholder="e.g. beauty salon"
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
             />
           </div>
           {providers.length > 1 && (
             <div className="sm:w-44">
-              <label className="mb-1 block text-xs font-medium text-zinc-500">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 AI Model
               </label>
               <select
                 value={provider}
                 onChange={(e) => setProvider(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
               >
                 {providers.map((p) => (
                   <option key={p.provider} value={p.provider}>
@@ -234,7 +234,7 @@ export default function ContentOptimizerPage() {
           <button
             type="submit"
             disabled={analyzing || providers.length === 0}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
           >
             <Sparkles className={`h-4 w-4 ${analyzing ? "animate-pulse" : ""}`} />
             {analyzing ? "Analyzing..." : "Analyze"}
@@ -267,29 +267,29 @@ export default function ContentOptimizerPage() {
       {result && (
         <div className="space-y-6">
           {/* Overall score */}
-          <div className="flex flex-col items-center gap-4 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row sm:items-start">
+          <div className="flex flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-start">
             <ScoreCircle score={result.analysis.overallScore} size={100} />
             <div className="flex-1">
-              <h2 className="text-lg font-semibold text-zinc-900">
+              <h2 className="text-lg font-semibold text-slate-900">
                 Overall SEO Score
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm text-slate-500">
                 Analyzed: {result.url}
-                <span className="ml-2 rounded bg-zinc-100 px-1.5 py-0.5 text-xs font-medium text-zinc-600">
+                <span className="ml-2 rounded bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">
                   {result.provider === "openai" ? "GPT-4.1 mini" : "Claude"}
                 </span>
               </p>
               <div className="mt-3">
-                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">
                   Priority Actions
                 </p>
                 <ol className="space-y-1">
                   {result.analysis.priorityActions.map((action, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-sm text-zinc-700"
+                      className="flex items-start gap-2 text-sm text-slate-700"
                     >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                         {i + 1}
                       </span>
                       {action}
@@ -455,12 +455,12 @@ function MiniStat({
   value: string;
 }) {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-3">
+    <div className="rounded-xl border border-slate-200 bg-white p-3">
       <div className="flex items-center gap-1.5">
-        <Icon className="h-3.5 w-3.5 text-zinc-400" />
-        <span className="text-xs text-zinc-500">{label}</span>
+        <Icon className="h-3.5 w-3.5 text-slate-400" />
+        <span className="text-xs text-slate-500">{label}</span>
       </div>
-      <p className="mt-1 text-sm font-semibold text-zinc-900">{value}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-900">{value}</p>
     </div>
   );
 }
@@ -506,14 +506,14 @@ function AnalysisSection({
   };
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white">
+    <div className="rounded-xl border border-slate-200 bg-white">
       <button
         onClick={() => setExpanded(!expanded)}
         className="flex w-full items-center justify-between px-5 py-4 text-left"
       >
         <div className="flex items-center gap-3">
-          <Icon className="h-5 w-5 text-zinc-600" />
-          <span className="text-sm font-semibold text-zinc-900">{title}</span>
+          <Icon className="h-5 w-5 text-slate-600" />
+          <span className="text-sm font-semibold text-slate-900">{title}</span>
           {scoreIcon}
         </div>
         <div className="flex items-center gap-3">
@@ -523,43 +523,43 @@ function AnalysisSection({
             {score}/10
           </span>
           {expanded ? (
-            <ChevronUp className="h-4 w-4 text-zinc-400" />
+            <ChevronUp className="h-4 w-4 text-slate-400" />
           ) : (
-            <ChevronDown className="h-4 w-4 text-zinc-400" />
+            <ChevronDown className="h-4 w-4 text-slate-400" />
           )}
         </div>
       </button>
 
       {expanded && (
-        <div className="border-t border-zinc-100 px-5 py-4">
+        <div className="border-t border-slate-100 px-5 py-4">
           <div className="mb-2">
-            <p className="text-xs font-medium uppercase tracking-wider text-zinc-400">
+            <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
               Current
             </p>
-            <p className="mt-1 text-sm text-zinc-700">{current}</p>
+            <p className="mt-1 text-sm text-slate-700">{current}</p>
           </div>
           <div className="mb-2">
-            <p className="text-xs font-medium uppercase tracking-wider text-zinc-400">
+            <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
               Feedback
             </p>
-            <p className="mt-1 text-sm text-zinc-600">{feedback}</p>
+            <p className="mt-1 text-sm text-slate-600">{feedback}</p>
           </div>
 
           {suggestions && suggestions.length > 0 && (
             <div className="mt-3">
-              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-400">
+              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-400">
                 Suggestions
               </p>
               <div className="space-y-2">
                 {suggestions.map((s, i) => (
                   <div
                     key={i}
-                    className="flex items-start justify-between rounded-lg bg-zinc-50 px-3 py-2"
+                    className="flex items-start justify-between rounded-lg bg-slate-50 px-3 py-2"
                   >
-                    <p className="flex-1 text-sm text-zinc-700">{s}</p>
+                    <p className="flex-1 text-sm text-slate-700">{s}</p>
                     <button
                       onClick={() => copyToClipboard(s, i)}
-                      className="ml-2 shrink-0 text-zinc-400 hover:text-zinc-600"
+                      className="ml-2 shrink-0 text-slate-400 hover:text-slate-600"
                       title="Copy to clipboard"
                     >
                       {copiedIdx === i ? (

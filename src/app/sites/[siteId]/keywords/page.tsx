@@ -241,7 +241,7 @@ export default function KeywordsPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
       </div>
     );
   }
@@ -259,7 +259,7 @@ export default function KeywordsPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
@@ -267,8 +267,8 @@ export default function KeywordsPage() {
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">Keyword Tracking</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-900">Keyword Tracking</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Track search rankings, clicks, and impressions for your target keywords.
           </p>
         </div>
@@ -276,7 +276,7 @@ export default function KeywordsPage() {
           <button
             onClick={() => handleSync(false)}
             disabled={syncing}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-200 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 disabled:opacity-50"
           >
             <RefreshCw className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} />
             Sync Rankings
@@ -299,7 +299,7 @@ export default function KeywordsPage() {
           </button>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
           >
             <Plus className="h-4 w-4" />
             Add Keyword
@@ -315,10 +315,10 @@ export default function KeywordsPage() {
 
       {/* Add keyword form */}
       {showAddForm && (
-        <div className="mb-6 rounded-xl border border-zinc-200 bg-white p-5">
+        <div className="mb-6 rounded-xl border border-slate-200 bg-white p-5">
           <form onSubmit={handleAdd} className="flex flex-col gap-3 sm:flex-row sm:items-end">
             <div className="flex-1">
-              <label className="mb-1 block text-xs font-medium text-zinc-500">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 Keyword
               </label>
               <input
@@ -326,12 +326,12 @@ export default function KeywordsPage() {
                 value={newKeyword}
                 onChange={(e) => setNewKeyword(e.target.value)}
                 placeholder="e.g. beauty parlor near me"
-                className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
                 required
               />
             </div>
             <div className="flex-1">
-              <label className="mb-1 block text-xs font-medium text-zinc-500">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 Target Page URL (optional)
               </label>
               <input
@@ -339,13 +339,13 @@ export default function KeywordsPage() {
                 value={newPageUrl}
                 onChange={(e) => setNewPageUrl(e.target.value)}
                 placeholder="https://example.com/page"
-                className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
               />
             </div>
             <button
               type="submit"
               disabled={adding}
-              className="rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+              className="rounded-lg bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
             >
               {adding ? "Adding..." : "Add"}
             </button>
@@ -359,13 +359,13 @@ export default function KeywordsPage() {
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-purple-600" />
-              <h3 className="text-sm font-semibold text-zinc-900">
+              <h3 className="text-sm font-semibold text-slate-900">
                 AI Keyword Research
               </h3>
             </div>
             <button
               onClick={() => { setShowResearch(false); setSuggestions([]); }}
-              className="text-zinc-400 hover:text-zinc-600"
+              className="text-slate-400 hover:text-slate-600"
             >
               <X className="h-4 w-4" />
             </button>
@@ -373,13 +373,13 @@ export default function KeywordsPage() {
 
           {suggestions.length === 0 ? (
             <form onSubmit={handleResearch} className="space-y-3">
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm text-slate-500">
                 Describe your business and location, and AI will generate keyword ideas
                 tailored to your market.
               </p>
               <div className="grid gap-3 sm:grid-cols-3">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                  <label className="mb-1 block text-xs font-medium text-slate-500">
                     Business Type *
                   </label>
                   <input
@@ -387,12 +387,12 @@ export default function KeywordsPage() {
                     value={researchBusiness}
                     onChange={(e) => setResearchBusiness(e.target.value)}
                     placeholder="e.g. Hair braiding salon"
-                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                  <label className="mb-1 block text-xs font-medium text-slate-500">
                     Location *
                   </label>
                   <input
@@ -400,12 +400,12 @@ export default function KeywordsPage() {
                     value={researchLocation}
                     onChange={(e) => setResearchLocation(e.target.value)}
                     placeholder="e.g. Forney, TX"
-                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-zinc-500">
+                  <label className="mb-1 block text-xs font-medium text-slate-500">
                     Services (optional)
                   </label>
                   <input
@@ -413,7 +413,7 @@ export default function KeywordsPage() {
                     value={researchServices}
                     onChange={(e) => setResearchServices(e.target.value)}
                     placeholder="e.g. braids, locs, hair installation, weaves"
-                    className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
                   />
                 </div>
               </div>
@@ -429,11 +429,11 @@ export default function KeywordsPage() {
           ) : (
             <div>
               {researchSummary && (
-                <p className="mb-4 text-sm text-zinc-600">{researchSummary}</p>
+                <p className="mb-4 text-sm text-slate-600">{researchSummary}</p>
               )}
 
               <div className="mb-3 flex items-center justify-between">
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-slate-500">
                   {selectedSuggestions.size} of {suggestions.length} selected
                 </p>
                 <div className="flex gap-2">
@@ -445,17 +445,17 @@ export default function KeywordsPage() {
                   </button>
                   <button
                     onClick={() => setSelectedSuggestions(new Set())}
-                    className="text-xs text-zinc-500 hover:text-zinc-700"
+                    className="text-xs text-slate-500 hover:text-slate-700"
                   >
                     Deselect All
                   </button>
                 </div>
               </div>
 
-              <div className="mb-4 max-h-80 overflow-y-auto rounded-lg border border-zinc-200">
+              <div className="mb-4 max-h-80 overflow-y-auto rounded-lg border border-slate-200">
                 <table className="w-full">
-                  <thead className="sticky top-0 bg-zinc-50">
-                    <tr className="text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                  <thead className="sticky top-0 bg-slate-50">
+                    <tr className="text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                       <th className="px-3 py-2 w-8" />
                       <th className="px-3 py-2">Keyword</th>
                       <th className="px-3 py-2">Category</th>
@@ -465,7 +465,7 @@ export default function KeywordsPage() {
                       <th className="px-3 py-2">Priority</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-zinc-100">
+                  <tbody className="divide-y divide-slate-100">
                     {suggestions.map((s) => {
                       const isTracked = keywords.some(
                         (k) => k.keyword.toLowerCase() === s.keyword.toLowerCase()
@@ -473,7 +473,7 @@ export default function KeywordsPage() {
                       return (
                         <tr
                           key={s.keyword}
-                          className={`text-sm ${isTracked ? "bg-green-50 opacity-60" : "hover:bg-zinc-50"}`}
+                          className={`text-sm ${isTracked ? "bg-green-50 opacity-60" : "hover:bg-slate-50"}`}
                         >
                           <td className="px-3 py-2">
                             {isTracked ? (
@@ -483,24 +483,24 @@ export default function KeywordsPage() {
                                 type="checkbox"
                                 checked={selectedSuggestions.has(s.keyword)}
                                 onChange={() => toggleSuggestion(s.keyword)}
-                                className="h-4 w-4 rounded border-zinc-300"
+                                className="h-4 w-4 rounded border-slate-300"
                               />
                             )}
                           </td>
-                          <td className="px-3 py-2 font-medium text-zinc-900">
+                          <td className="px-3 py-2 font-medium text-slate-900">
                             {s.keyword}
                             {isTracked && (
                               <span className="ml-2 text-xs text-green-600">already tracked</span>
                             )}
                           </td>
-                          <td className="px-3 py-2 text-zinc-500">{s.category}</td>
+                          <td className="px-3 py-2 text-slate-500">{s.category}</td>
                           <td className="px-3 py-2">
                             <VolumeBadge level={s.searchVolume} />
                           </td>
                           <td className="px-3 py-2">
                             <CompetitionBadge level={s.competition} />
                           </td>
-                          <td className="px-3 py-2 text-zinc-500">{s.intent}</td>
+                          <td className="px-3 py-2 text-slate-500">{s.intent}</td>
                           <td className="px-3 py-2">
                             <PriorityBadge priority={s.priority} />
                           </td>
@@ -524,7 +524,7 @@ export default function KeywordsPage() {
                 </button>
                 <button
                   onClick={() => setSuggestions([])}
-                  className="rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-200"
+                  className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200"
                 >
                   Research Again
                 </button>
@@ -536,27 +536,27 @@ export default function KeywordsPage() {
 
       {/* Stats cards */}
       <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-5">
-        <div className="rounded-xl border border-zinc-200 bg-white p-4">
-          <p className="text-xs text-zinc-500">Keywords</p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900">{keywords.length}</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs text-slate-500">Keywords</p>
+          <p className="mt-1 text-2xl font-bold text-slate-900">{keywords.length}</p>
         </div>
-        <div className="rounded-xl border border-zinc-200 bg-white p-4">
-          <p className="text-xs text-zinc-500">Total Clicks</p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900">{totalClicks}</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs text-slate-500">Total Clicks</p>
+          <p className="mt-1 text-2xl font-bold text-slate-900">{totalClicks}</p>
         </div>
-        <div className="rounded-xl border border-zinc-200 bg-white p-4">
-          <p className="text-xs text-zinc-500">Impressions</p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900">{totalImpressions.toLocaleString()}</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs text-slate-500">Impressions</p>
+          <p className="mt-1 text-2xl font-bold text-slate-900">{totalImpressions.toLocaleString()}</p>
         </div>
-        <div className="rounded-xl border border-zinc-200 bg-white p-4">
-          <p className="text-xs text-zinc-500">Avg Position</p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900">
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs text-slate-500">Avg Position</p>
+          <p className="mt-1 text-2xl font-bold text-slate-900">
             {avgPosition ? avgPosition.toFixed(1) : "-"}
           </p>
         </div>
-        <div className="rounded-xl border border-zinc-200 bg-white p-4">
-          <p className="text-xs text-zinc-500">Improved / Declined</p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900">
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs text-slate-500">Improved / Declined</p>
+          <p className="mt-1 text-2xl font-bold text-slate-900">
             <span className="text-green-600">{improved}</span>
             {" / "}
             <span className="text-red-600">{declined}</span>
@@ -566,19 +566,19 @@ export default function KeywordsPage() {
 
       {/* Keywords table */}
       {keywords.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-zinc-200 bg-white py-16">
-          <Search className="mb-3 h-10 w-10 text-zinc-300" />
-          <p className="text-sm font-medium text-zinc-600">No keywords tracked yet</p>
-          <p className="mt-1 text-sm text-zinc-400">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white py-16">
+          <Search className="mb-3 h-10 w-10 text-slate-300" />
+          <p className="text-sm font-medium text-slate-600">No keywords tracked yet</p>
+          <p className="mt-1 text-sm text-slate-400">
             Add keywords manually or use Auto-Discover to import from Google Search Console.
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-zinc-100 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   <th className="px-4 py-3">Keyword</th>
                   <th className="px-4 py-3 text-right">Position</th>
                   <th className="px-4 py-3 text-right">Change</th>
@@ -589,19 +589,19 @@ export default function KeywordsPage() {
                   <th className="px-4 py-3" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-slate-100">
                 {keywords.map((kw) => (
-                  <tr key={kw.id} className="hover:bg-zinc-50">
+                  <tr key={kw.id} className="hover:bg-slate-50">
                     <td className="px-4 py-3">
-                      <p className="text-sm font-medium text-zinc-900">{kw.keyword}</p>
+                      <p className="text-sm font-medium text-slate-900">{kw.keyword}</p>
                       {kw.pageUrl && (
-                        <p className="mt-0.5 max-w-xs truncate text-xs text-zinc-400">
+                        <p className="mt-0.5 max-w-xs truncate text-xs text-slate-400">
                           {kw.pageUrl}
                         </p>
                       )}
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <span className="text-sm font-semibold text-zinc-900">
+                      <span className="text-sm font-semibold text-slate-900">
                         {kw.currentPosition !== null
                           ? kw.currentPosition.toFixed(1)
                           : "-"}
@@ -610,13 +610,13 @@ export default function KeywordsPage() {
                     <td className="px-4 py-3 text-right">
                       <PositionChange change={kw.positionChange} />
                     </td>
-                    <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                    <td className="px-4 py-3 text-right text-sm text-slate-700">
                       {kw.currentClicks}
                     </td>
-                    <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                    <td className="px-4 py-3 text-right text-sm text-slate-700">
                       {kw.currentImpressions.toLocaleString()}
                     </td>
-                    <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                    <td className="px-4 py-3 text-right text-sm text-slate-700">
                       {(kw.currentCtr * 100).toFixed(1)}%
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -625,7 +625,7 @@ export default function KeywordsPage() {
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => handleDelete(kw.id, kw.keyword)}
-                        className="text-zinc-400 hover:text-red-600"
+                        className="text-slate-400 hover:text-red-600"
                         title="Remove keyword"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -646,7 +646,7 @@ function VolumeBadge({ level }: { level: string }) {
   const colors: Record<string, string> = {
     high: "bg-green-100 text-green-700",
     medium: "bg-yellow-100 text-yellow-700",
-    low: "bg-zinc-100 text-zinc-600",
+    low: "bg-slate-100 text-slate-600",
   };
   const cls = colors[level.toLowerCase()] || colors.medium;
   return (
@@ -674,9 +674,9 @@ function PriorityBadge({ priority }: { priority: number }) {
   const colors: Record<number, string> = {
     1: "bg-purple-100 text-purple-700",
     2: "bg-blue-100 text-blue-700",
-    3: "bg-zinc-100 text-zinc-600",
-    4: "bg-zinc-50 text-zinc-400",
-    5: "bg-zinc-50 text-zinc-400",
+    3: "bg-slate-100 text-slate-600",
+    4: "bg-slate-50 text-slate-400",
+    5: "bg-slate-50 text-slate-400",
   };
   const cls = colors[priority] || colors[3];
   const labels: Record<number, string> = {
@@ -696,7 +696,7 @@ function PriorityBadge({ priority }: { priority: number }) {
 function PositionChange({ change }: { change: number }) {
   if (change === 0) {
     return (
-      <span className="inline-flex items-center gap-1 text-sm text-zinc-400">
+      <span className="inline-flex items-center gap-1 text-sm text-slate-400">
         <Minus className="h-3 w-3" />
         0
       </span>
@@ -721,7 +721,7 @@ function PositionChange({ change }: { change: number }) {
 }
 
 function MiniSparkline({ data }: { data: number[] }) {
-  if (data.length < 2) return <span className="text-xs text-zinc-300">-</span>;
+  if (data.length < 2) return <span className="text-xs text-slate-300">-</span>;
 
   // Reverse so oldest is first (data comes newest-first)
   const points = [...data].reverse();

@@ -157,7 +157,7 @@ export default function SearchConsolePage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
       </div>
     );
   }
@@ -166,7 +166,7 @@ export default function SearchConsolePage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to {siteName}
@@ -174,10 +174,10 @@ export default function SearchConsolePage() {
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Search Console
           </h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-slate-500">
             Search performance and indexing data from Google
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function SearchConsolePage() {
           {!data?.connected && (
             <button
               onClick={connectGsc}
-              className="flex items-center gap-2 rounded-lg border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
+              className="flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               <Link2 className="h-4 w-4" />
               Connect GSC
@@ -195,7 +195,7 @@ export default function SearchConsolePage() {
             <button
               onClick={syncData}
               disabled={syncing}
-              className="flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
             >
               {syncing ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -218,13 +218,13 @@ export default function SearchConsolePage() {
             Connect your Google account to pull search analytics data.
             You need to set up Google OAuth credentials first (see setup guide below).
           </p>
-          <div className="mt-3 rounded-lg bg-white p-3 text-xs text-zinc-600">
+          <div className="mt-3 rounded-lg bg-white p-3 text-xs text-slate-600">
             <p className="font-medium">Setup steps:</p>
             <ol className="mt-1 list-inside list-decimal space-y-1">
               <li>Go to Google Cloud Console and create a project</li>
               <li>Enable the Search Console API</li>
               <li>Create OAuth 2.0 credentials (Web application type)</li>
-              <li>Set redirect URI to: <code className="rounded bg-zinc-100 px-1">http://localhost:3000/api/gsc/callback</code></li>
+              <li>Set redirect URI to: <code className="rounded bg-slate-100 px-1">http://localhost:3000/api/gsc/callback</code></li>
               <li>Add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to your .env file</li>
               <li>Restart the dev server and click Connect GSC</li>
             </ol>
@@ -259,16 +259,16 @@ export default function SearchConsolePage() {
                   className={`block w-full rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
                     prop.siteUrl === currentGscProperty
                       ? "border-blue-500 bg-blue-100 font-medium text-blue-900"
-                      : "border-zinc-200 bg-white text-zinc-700 hover:border-blue-300 hover:bg-blue-50"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50"
                   }`}
                 >
                   <span className="font-medium">{prop.siteUrl}</span>
-                  <span className="ml-2 text-xs text-zinc-400">({prop.permissionLevel})</span>
+                  <span className="ml-2 text-xs text-slate-400">({prop.permissionLevel})</span>
                 </button>
               ))}
               <button
                 onClick={() => setShowPropertyPicker(false)}
-                className="text-sm text-zinc-500 hover:text-zinc-700"
+                className="text-sm text-slate-500 hover:text-slate-700"
               >
                 Cancel
               </button>
@@ -284,8 +284,8 @@ export default function SearchConsolePage() {
 
       {gscConfigured && !showPropertyPicker && data?.connected && (
         <div className="mb-4 flex items-center gap-2">
-          <span className="text-xs text-zinc-400">
-            GSC Property: <span className="font-medium text-zinc-600">{currentGscProperty}</span>
+          <span className="text-xs text-slate-400">
+            GSC Property: <span className="font-medium text-slate-600">{currentGscProperty}</span>
           </span>
           <button
             onClick={fetchGscProperties}
@@ -325,14 +325,14 @@ export default function SearchConsolePage() {
           {/* Date trend (simple table since no chart library yet) */}
           {data.dateTrend.length > 0 && (
             <div className="mb-6">
-              <h2 className="mb-3 text-lg font-semibold text-zinc-900">
+              <h2 className="mb-3 text-lg font-semibold text-slate-900">
                 Performance Trend (Last 28 Days)
               </h2>
-              <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
                 <div className="max-h-64 overflow-y-auto">
                   <table className="w-full">
-                    <thead className="sticky top-0 bg-zinc-50">
-                      <tr className="border-b border-zinc-100 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                    <thead className="sticky top-0 bg-slate-50">
+                      <tr className="border-b border-slate-100 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                         <th className="px-4 py-3">Date</th>
                         <th className="px-4 py-3 text-right">Clicks</th>
                         <th className="px-4 py-3 text-right">Impressions</th>
@@ -340,22 +340,22 @@ export default function SearchConsolePage() {
                         <th className="px-4 py-3 text-right">Position</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-100">
+                    <tbody className="divide-y divide-slate-100">
                       {data.dateTrend.map((row) => (
-                        <tr key={row.date} className="hover:bg-zinc-50">
-                          <td className="px-4 py-2 text-sm text-zinc-700">
+                        <tr key={row.date} className="hover:bg-slate-50">
+                          <td className="px-4 py-2 text-sm text-slate-700">
                             {row.date}
                           </td>
-                          <td className="px-4 py-2 text-right text-sm font-medium text-zinc-900">
+                          <td className="px-4 py-2 text-right text-sm font-medium text-slate-900">
                             {row.clicks}
                           </td>
-                          <td className="px-4 py-2 text-right text-sm text-zinc-600">
+                          <td className="px-4 py-2 text-right text-sm text-slate-600">
                             {row.impressions}
                           </td>
-                          <td className="px-4 py-2 text-right text-sm text-zinc-600">
+                          <td className="px-4 py-2 text-right text-sm text-slate-600">
                             {(row.ctr * 100).toFixed(1)}%
                           </td>
-                          <td className="px-4 py-2 text-right text-sm text-zinc-600">
+                          <td className="px-4 py-2 text-right text-sm text-slate-600">
                             {row.position.toFixed(1)}
                           </td>
                         </tr>
@@ -370,13 +370,13 @@ export default function SearchConsolePage() {
           {/* Top queries */}
           {data.topQueries.length > 0 && (
             <div>
-              <h2 className="mb-3 text-lg font-semibold text-zinc-900">
+              <h2 className="mb-3 text-lg font-semibold text-slate-900">
                 Top Search Queries
               </h2>
-              <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-zinc-100 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                    <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                       <th className="px-4 py-3">Query</th>
                       <th className="px-4 py-3 text-right">Clicks</th>
                       <th className="px-4 py-3 text-right">Impressions</th>
@@ -384,25 +384,25 @@ export default function SearchConsolePage() {
                       <th className="px-4 py-3 text-right">CTR</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-zinc-100">
+                  <tbody className="divide-y divide-slate-100">
                     {data.topQueries.map((q) => (
-                      <tr key={q.query} className="hover:bg-zinc-50">
-                        <td className="max-w-xs truncate px-4 py-3 text-sm font-medium text-zinc-900">
+                      <tr key={q.query} className="hover:bg-slate-50">
+                        <td className="max-w-xs truncate px-4 py-3 text-sm font-medium text-slate-900">
                           <div className="flex items-center gap-2">
-                            <Search className="h-3.5 w-3.5 text-zinc-400" />
+                            <Search className="h-3.5 w-3.5 text-slate-400" />
                             {q.query}
                           </div>
                         </td>
-                        <td className="px-4 py-3 text-right text-sm font-semibold text-zinc-900">
+                        <td className="px-4 py-3 text-right text-sm font-semibold text-slate-900">
                           {q.clicks}
                         </td>
-                        <td className="px-4 py-3 text-right text-sm text-zinc-600">
+                        <td className="px-4 py-3 text-right text-sm text-slate-600">
                           {q.impressions}
                         </td>
-                        <td className="px-4 py-3 text-right text-sm text-zinc-600">
+                        <td className="px-4 py-3 text-right text-sm text-slate-600">
                           {q.avgPosition}
                         </td>
-                        <td className="px-4 py-3 text-right text-sm text-zinc-600">
+                        <td className="px-4 py-3 text-right text-sm text-slate-600">
                           {q.avgCtr}%
                         </td>
                       </tr>
@@ -417,9 +417,9 @@ export default function SearchConsolePage() {
 
       {/* Empty state when connected but no data */}
       {data?.connected && gscConfigured && data.totals.clicks === 0 && data.totals.impressions === 0 && (
-        <div className="flex h-48 flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-200">
-          <Search className="mb-2 h-8 w-8 text-zinc-300" />
-          <p className="text-sm text-zinc-500">
+        <div className="flex h-48 flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-200">
+          <Search className="mb-2 h-8 w-8 text-slate-300" />
+          <p className="text-sm text-slate-500">
             No search data yet. Click &quot;Sync Data&quot; to pull from GSC.
           </p>
         </div>
@@ -438,12 +438,12 @@ function StatCard({
   value: string;
 }) {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-4">
+    <div className="rounded-xl border border-slate-200 bg-white p-4">
       <div className="flex items-center gap-2">
-        <Icon className="h-4 w-4 text-zinc-400" />
-        <span className="text-sm text-zinc-500">{label}</span>
+        <Icon className="h-4 w-4 text-slate-400" />
+        <span className="text-sm text-slate-500">{label}</span>
       </div>
-      <p className="mt-1 text-2xl font-bold text-zinc-900">{value}</p>
+      <p className="mt-1 text-2xl font-bold text-slate-900">{value}</p>
     </div>
   );
 }

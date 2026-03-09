@@ -146,7 +146,7 @@ export default function BacklinksPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
@@ -154,8 +154,8 @@ export default function BacklinksPage() {
 
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">Backlink Monitor</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-900">Backlink Monitor</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Track and verify external links pointing to your site.
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function BacklinksPage() {
             <button
               onClick={handleCheckAll}
               disabled={checking}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
             >
               <RefreshCw className={`h-4 w-4 ${checking ? "animate-spin" : ""}`} />
               {checking ? "Checking..." : "Re-check All"}
@@ -172,7 +172,7 @@ export default function BacklinksPage() {
           )}
           <button
             onClick={() => setShowForm(!showForm)}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
           >
             <Plus className="h-4 w-4" />
             Add Backlink
@@ -190,9 +190,9 @@ export default function BacklinksPage() {
       {showForm && (
         <form
           onSubmit={handleAdd}
-          className="mb-6 rounded-xl border border-zinc-200 bg-white p-5"
+          className="mb-6 rounded-xl border border-slate-200 bg-white p-5"
         >
-          <label className="mb-1 block text-xs font-medium text-zinc-500">
+          <label className="mb-1 block text-xs font-medium text-slate-500">
             Source URL (the page linking to your site)
           </label>
           <div className="flex gap-2">
@@ -201,18 +201,18 @@ export default function BacklinksPage() {
               value={sourceUrl}
               onChange={(e) => setSourceUrl(e.target.value)}
               placeholder="https://example.com/page-with-link"
-              className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+              className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
               required
             />
             <button
               type="submit"
               disabled={adding}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
             >
               {adding ? "Verifying..." : "Add & Verify"}
             </button>
           </div>
-          <p className="mt-1 text-xs text-zinc-400">
+          <p className="mt-1 text-xs text-slate-400">
             We will fetch the page and verify it contains a link to your site.
           </p>
         </form>
@@ -233,21 +233,21 @@ export default function BacklinksPage() {
       {/* Backlinks table */}
       {loading ? (
         <div className="flex h-40 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
         </div>
       ) : backlinks.length === 0 ? (
-        <div className="rounded-xl border border-zinc-200 bg-white p-12 text-center">
-          <Link2 className="mx-auto h-10 w-10 text-zinc-300" />
-          <p className="mt-3 text-sm font-medium text-zinc-600">No backlinks tracked yet</p>
-          <p className="mt-1 text-xs text-zinc-400">
+        <div className="rounded-xl border border-slate-200 bg-white p-12 text-center">
+          <Link2 className="mx-auto h-10 w-10 text-slate-300" />
+          <p className="mt-3 text-sm font-medium text-slate-600">No backlinks tracked yet</p>
+          <p className="mt-1 text-xs text-slate-400">
             Add backlinks to monitor whether external sites are still linking to you.
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-zinc-100 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+              <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                 <th className="px-4 py-3">Source</th>
                 <th className="px-4 py-3">Anchor Text</th>
                 <th className="px-4 py-3">Type</th>
@@ -256,29 +256,29 @@ export default function BacklinksPage() {
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100">
+            <tbody className="divide-y divide-slate-100">
               {backlinks.map((bl) => (
-                <tr key={bl.id} className="hover:bg-zinc-50">
+                <tr key={bl.id} className="hover:bg-slate-50">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <Globe className="h-4 w-4 shrink-0 text-zinc-400" />
+                      <Globe className="h-4 w-4 shrink-0 text-slate-400" />
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-zinc-700">
+                        <p className="truncate text-sm font-medium text-slate-700">
                           {getDomain(bl.sourceUrl)}
                         </p>
                         <a
                           href={bl.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-600"
+                          className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600"
                         >
                           View page <ExternalLink className="h-3 w-3" />
                         </a>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-sm text-zinc-600">
-                    {bl.anchorText || <span className="text-zinc-300">-</span>}
+                  <td className="px-4 py-3 text-sm text-slate-600">
+                    {bl.anchorText || <span className="text-slate-300">-</span>}
                   </td>
                   <td className="px-4 py-3">
                     {bl.isDoFollow ? (
@@ -306,13 +306,13 @@ export default function BacklinksPage() {
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-xs text-zinc-500">
+                  <td className="px-4 py-3 text-xs text-slate-500">
                     {new Date(bl.firstSeen).toLocaleDateString()}
                   </td>
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => handleDelete(bl.id)}
-                      className="rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600"
+                      className="rounded p-1 text-slate-400 hover:bg-red-50 hover:text-red-600"
                       title="Delete backlink"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -344,11 +344,11 @@ function MiniStat({
       ? "text-red-700"
       : color === "amber"
       ? "text-amber-700"
-      : "text-zinc-900";
+      : "text-slate-900";
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-3">
-      <p className="text-xs text-zinc-500">{label}</p>
+    <div className="rounded-xl border border-slate-200 bg-white p-3">
+      <p className="text-xs text-slate-500">{label}</p>
       <p className={`mt-1 text-xl font-bold ${textColor}`}>{value}</p>
     </div>
   );

@@ -171,7 +171,7 @@ export default function CompetitorsPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
       </div>
     );
   }
@@ -180,7 +180,7 @@ export default function CompetitorsPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
@@ -188,14 +188,14 @@ export default function CompetitorsPage() {
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">Competitor Tracking</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-900">Competitor Tracking</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Track competitors and get AI-powered competitive analysis.
           </p>
         </div>
         <button
           onClick={() => setShowAddForm(!showAddForm)}
-          className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
         >
           <Plus className="h-4 w-4" />
           Add Competitor
@@ -210,10 +210,10 @@ export default function CompetitorsPage() {
 
       {/* Add competitor form */}
       {showAddForm && (
-        <div className="mb-6 rounded-xl border border-zinc-200 bg-white p-5">
+        <div className="mb-6 rounded-xl border border-slate-200 bg-white p-5">
           <form onSubmit={handleAdd} className="flex flex-col gap-3 sm:flex-row sm:items-end">
             <div className="flex-1">
-              <label className="mb-1 block text-xs font-medium text-zinc-500">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 Competitor Domain *
               </label>
               <input
@@ -221,12 +221,12 @@ export default function CompetitorsPage() {
                 value={newDomain}
                 onChange={(e) => setNewDomain(e.target.value)}
                 placeholder="e.g. competitor-salon.com"
-                className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
                 required
               />
             </div>
             <div className="flex-1">
-              <label className="mb-1 block text-xs font-medium text-zinc-500">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 Display Name (optional)
               </label>
               <input
@@ -234,21 +234,21 @@ export default function CompetitorsPage() {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="e.g. Competitor Salon"
-                className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
               />
             </div>
             <div className="flex gap-2">
               <button
                 type="submit"
                 disabled={adding}
-                className="rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+                className="rounded-lg bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
               >
                 {adding ? "Adding..." : "Add"}
               </button>
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="rounded-lg bg-zinc-100 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-200"
+                className="rounded-lg bg-slate-100 px-4 py-2 text-sm text-slate-600 hover:bg-slate-200"
               >
                 Cancel
               </button>
@@ -259,10 +259,10 @@ export default function CompetitorsPage() {
 
       {/* Competitors list */}
       {competitors.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-zinc-200 bg-white py-16">
-          <Users className="mb-3 h-10 w-10 text-zinc-300" />
-          <p className="text-sm font-medium text-zinc-600">No competitors tracked yet</p>
-          <p className="mt-1 text-sm text-zinc-400">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white py-16">
+          <Users className="mb-3 h-10 w-10 text-slate-300" />
+          <p className="text-sm font-medium text-slate-600">No competitors tracked yet</p>
+          <p className="mt-1 text-sm text-slate-400">
             Add competitor websites to compare SEO performance.
           </p>
         </div>
@@ -276,21 +276,21 @@ export default function CompetitorsPage() {
             return (
               <div
                 key={comp.id}
-                className="rounded-xl border border-zinc-200 bg-white overflow-hidden"
+                className="rounded-xl border border-slate-200 bg-white overflow-hidden"
               >
                 {/* Competitor header */}
                 <div className="flex items-center justify-between px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100">
-                      <Users className="h-5 w-5 text-zinc-500" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
+                      <Users className="h-5 w-5 text-slate-500" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-zinc-900">{comp.name}</p>
+                      <p className="text-sm font-semibold text-slate-900">{comp.name}</p>
                       <a
                         href={`https://${comp.domain}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-600"
+                        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600"
                       >
                         {comp.domain}
                         <ExternalLink className="h-3 w-3" />
@@ -302,7 +302,7 @@ export default function CompetitorsPage() {
                     {hasAnalysis && (
                       <button
                         onClick={() => toggleAnalysis(comp.id)}
-                        className="inline-flex items-center gap-1 rounded-lg bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-600 hover:bg-zinc-200"
+                        className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-200"
                       >
                         {isExpanded ? (
                           <ChevronDown className="h-3 w-3" />
@@ -326,7 +326,7 @@ export default function CompetitorsPage() {
                     </button>
                     <button
                       onClick={() => handleDelete(comp.id, comp.domain)}
-                      className="text-zinc-400 hover:text-red-600"
+                      className="text-slate-400 hover:text-red-600"
                       title="Remove competitor"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -336,35 +336,35 @@ export default function CompetitorsPage() {
 
                 {/* Expanded analysis */}
                 {isExpanded && analysis && (
-                  <div className="border-t border-zinc-100 px-5 py-5">
+                  <div className="border-t border-slate-100 px-5 py-5">
                     {/* Overview */}
                     {analysis.overallComparison && (
-                      <p className="mb-4 text-sm text-zinc-600">
+                      <p className="mb-4 text-sm text-slate-600">
                         {analysis.overallComparison}
                       </p>
                     )}
 
                     {/* Technical comparison */}
                     {analysis.technicalComparison && (
-                      <div className="mb-4 rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-                        <h4 className="mb-2 text-sm font-semibold text-zinc-800">
+                      <div className="mb-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                        <h4 className="mb-2 text-sm font-semibold text-slate-800">
                           Technical SEO Comparison
                         </h4>
                         <div className="flex gap-8">
                           <div>
-                            <p className="text-xs text-zinc-500">Your Site</p>
-                            <p className="text-2xl font-bold text-zinc-900">
+                            <p className="text-xs text-slate-500">Your Site</p>
+                            <p className="text-2xl font-bold text-slate-900">
                               {analysis.technicalComparison.yourScore}/10
                             </p>
                           </div>
                           <div>
-                            <p className="text-xs text-zinc-500">Competitor</p>
-                            <p className="text-2xl font-bold text-zinc-900">
+                            <p className="text-xs text-slate-500">Competitor</p>
+                            <p className="text-2xl font-bold text-slate-900">
                               {analysis.technicalComparison.competitorScore}/10
                             </p>
                           </div>
                         </div>
-                        <p className="mt-2 text-xs text-zinc-500">
+                        <p className="mt-2 text-xs text-slate-500">
                           {analysis.technicalComparison.details}
                         </p>
                       </div>
@@ -435,12 +435,12 @@ export default function CompetitorsPage() {
                     {/* Action items */}
                     {analysis.actionItems && analysis.actionItems.length > 0 && (
                       <div className="mt-4">
-                        <h4 className="mb-2 text-sm font-semibold text-zinc-800">Action Items</h4>
+                        <h4 className="mb-2 text-sm font-semibold text-slate-800">Action Items</h4>
                         <div className="space-y-2">
                           {analysis.actionItems.map((item, i) => (
                             <div
                               key={i}
-                              className="flex items-start gap-3 rounded-lg border border-zinc-200 bg-white p-3"
+                              className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-3"
                             >
                               <span
                                 className={`mt-0.5 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -448,14 +448,14 @@ export default function CompetitorsPage() {
                                     ? "bg-red-100 text-red-700"
                                     : item.priority === "medium"
                                     ? "bg-amber-100 text-amber-700"
-                                    : "bg-zinc-100 text-zinc-600"
+                                    : "bg-slate-100 text-slate-600"
                                 }`}
                               >
                                 {item.priority}
                               </span>
                               <div>
-                                <p className="text-sm text-zinc-800">{item.action}</p>
-                                <p className="text-xs text-zinc-500">{item.impact}</p>
+                                <p className="text-sm text-slate-800">{item.action}</p>
+                                <p className="text-xs text-slate-500">{item.impact}</p>
                               </div>
                             </div>
                           ))}

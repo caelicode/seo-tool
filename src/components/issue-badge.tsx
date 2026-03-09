@@ -70,7 +70,7 @@ const typeLabels: Record<string, string> = {
 export function IssueTypeBadge({ type }: IssueTypeBadgeProps) {
   const label = typeLabels[type] || type.replace(/_/g, " ");
   return (
-    <span className="inline-block rounded bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
+    <span className="inline-block rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
       {label}
     </span>
   );

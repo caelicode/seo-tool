@@ -13,12 +13,12 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-zinc-200 bg-white/80 backdrop-blur-sm">
+    <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Search className="h-5 w-5 text-zinc-900" />
-          <span className="text-base font-bold text-zinc-900">SEO Tool</span>
+          <Search className="h-5 w-5 text-slate-900" />
+          <span className="text-base font-bold text-slate-900">SEO Tool</span>
         </Link>
 
         {/* Nav links */}
@@ -34,8 +34,8 @@ export function Navbar() {
                 href={item.href}
                 className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-zinc-100 text-zinc-900"
-                    : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-700"
+                    ? "bg-slate-100 text-slate-900"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"
                 }`}
               >
                 <item.icon className="h-4 w-4" />

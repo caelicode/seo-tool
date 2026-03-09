@@ -100,15 +100,15 @@ export default function SitemapPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
       </Link>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-zinc-900">Sitemap Validator</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold text-slate-900">Sitemap Validator</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Validate your sitemap structure, check for broken URLs, and ensure search engines can crawl your site effectively.
         </p>
       </div>
@@ -116,9 +116,9 @@ export default function SitemapPage() {
       {/* Input form */}
       <form
         onSubmit={handleValidate}
-        className="mb-6 rounded-xl border border-zinc-200 bg-white p-5"
+        className="mb-6 rounded-xl border border-slate-200 bg-white p-5"
       >
-        <label className="mb-1 block text-xs font-medium text-zinc-500">
+        <label className="mb-1 block text-xs font-medium text-slate-500">
           Sitemap URL (leave empty to auto-detect)
         </label>
         <div className="flex gap-2">
@@ -127,12 +127,12 @@ export default function SitemapPage() {
             value={sitemapUrl}
             onChange={(e) => setSitemapUrl(e.target.value)}
             placeholder="https://example.com/sitemap.xml"
-            className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
+            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-400 focus:outline-none"
           />
           <button
             type="submit"
             disabled={validating}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
           >
             <Play className={`h-4 w-4 ${validating ? "animate-pulse" : ""}`} />
             {validating ? "Validating..." : "Validate"}
@@ -165,19 +165,19 @@ export default function SitemapPage() {
       {result && (
         <div className="space-y-6">
           {/* Summary card */}
-          <div className="rounded-xl border border-zinc-200 bg-white p-6">
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2">
-                  <Map className="h-5 w-5 text-zinc-600" />
-                  <h2 className="text-lg font-semibold text-zinc-900">Sitemap Summary</h2>
+                  <Map className="h-5 w-5 text-slate-600" />
+                  <h2 className="text-lg font-semibold text-slate-900">Sitemap Summary</h2>
                   <HealthBadge {...getHealthLabel(result)} />
                 </div>
                 <a
                   href={result.sitemapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 inline-flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-600"
+                  className="mt-1 inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600"
                 >
                   {result.sitemapUrl} <ExternalLink className="h-3 w-3" />
                 </a>
@@ -192,7 +192,7 @@ export default function SitemapPage() {
             </div>
 
             {result.isSitemapIndex && (
-              <p className="mt-3 text-xs text-zinc-500">
+              <p className="mt-3 text-xs text-slate-500">
                 This is a sitemap index with {result.childSitemaps} child sitemaps.
               </p>
             )}
@@ -232,13 +232,13 @@ export default function SitemapPage() {
 
           {/* Checked URLs */}
           {result.checkedUrls.length > 0 && (
-            <div className="rounded-xl border border-zinc-200 bg-white">
-              <div className="border-b border-zinc-100 px-5 py-4">
-                <h3 className="text-sm font-semibold text-zinc-900">
+            <div className="rounded-xl border border-slate-200 bg-white">
+              <div className="border-b border-slate-100 px-5 py-4">
+                <h3 className="text-sm font-semibold text-slate-900">
                   Checked URLs ({result.checkedUrls.length} sampled)
                 </h3>
               </div>
-              <div className="divide-y divide-zinc-100">
+              <div className="divide-y divide-slate-100">
                 {result.checkedUrls.map((url, i) => (
                   <div key={i} className="flex items-center justify-between px-5 py-3">
                     <div className="min-w-0 flex-1">
@@ -246,13 +246,13 @@ export default function SitemapPage() {
                         href={url.loc}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 truncate text-sm text-zinc-700 hover:text-zinc-900"
+                        className="flex items-center gap-1 truncate text-sm text-slate-700 hover:text-slate-900"
                       >
                         {url.loc}
-                        <ExternalLink className="h-3 w-3 shrink-0 text-zinc-400" />
+                        <ExternalLink className="h-3 w-3 shrink-0 text-slate-400" />
                       </a>
                       {url.lastmod && (
-                        <p className="text-xs text-zinc-400">Last modified: {url.lastmod}</p>
+                        <p className="text-xs text-slate-400">Last modified: {url.lastmod}</p>
                       )}
                     </div>
                     <div className="ml-3 shrink-0">
@@ -276,37 +276,37 @@ export default function SitemapPage() {
 
           {/* All URLs toggle */}
           {result.allUrls.length > 0 && (
-            <div className="rounded-xl border border-zinc-200 bg-white">
+            <div className="rounded-xl border border-slate-200 bg-white">
               <button
                 onClick={() => setShowAllUrls(!showAllUrls)}
                 className="flex w-full items-center justify-between px-5 py-4 text-left"
               >
                 <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-zinc-500" />
-                  <span className="text-sm font-semibold text-zinc-900">
+                  <FileText className="h-4 w-4 text-slate-500" />
+                  <span className="text-sm font-semibold text-slate-900">
                     All URLs ({result.allUrls.length})
                   </span>
                 </div>
                 {showAllUrls ? (
-                  <ChevronUp className="h-4 w-4 text-zinc-400" />
+                  <ChevronUp className="h-4 w-4 text-slate-400" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-zinc-400" />
+                  <ChevronDown className="h-4 w-4 text-slate-400" />
                 )}
               </button>
 
               {showAllUrls && (
-                <div className="max-h-96 divide-y divide-zinc-100 overflow-y-auto border-t border-zinc-100">
+                <div className="max-h-96 divide-y divide-slate-100 overflow-y-auto border-t border-slate-100">
                   {result.allUrls.map((url, i) => (
                     <div key={i} className="flex items-center justify-between px-5 py-2">
                       <a
                         href={url.loc}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="truncate text-xs text-zinc-600 hover:text-zinc-900"
+                        className="truncate text-xs text-slate-600 hover:text-slate-900"
                       >
                         {url.loc}
                       </a>
-                      <div className="ml-2 flex shrink-0 gap-3 text-xs text-zinc-400">
+                      <div className="ml-2 flex shrink-0 gap-3 text-xs text-slate-400">
                         {url.lastmod && <span>{url.lastmod}</span>}
                         {url.changefreq && <span>{url.changefreq}</span>}
                         {url.priority && <span>P:{url.priority}</span>}
@@ -354,11 +354,11 @@ function StatBox({
       ? "text-red-700"
       : color === "amber"
       ? "text-amber-700"
-      : "text-zinc-900";
+      : "text-slate-900";
 
   return (
-    <div className="rounded-lg bg-zinc-50 p-3">
-      <p className="text-xs text-zinc-500">{label}</p>
+    <div className="rounded-lg bg-slate-50 p-3">
+      <p className="text-xs text-slate-500">{label}</p>
       <p className={`mt-1 text-lg font-bold ${textColor}`}>{value}</p>
     </div>
   );

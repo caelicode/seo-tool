@@ -25,6 +25,7 @@ model Site {
   backlinks   Backlink[]
   sitemapChecks SitemapCheck[]
   schemaAnalyses SchemaAnalysis[]
+  contentArticles ContentArticle[]
 }
 
 model Page {
@@ -198,6 +199,27 @@ model SchemaAnalysis {
   suggestions String  // JSON string of AI suggestions
   provider   String   @default("openai")
   createdAt  DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+}
+
+model ContentArticle {
+  id              String   @id @default(cuid())
+  siteId          String
+  targetKeyword   String
+  secondaryKeywords String? // JSON array of secondary keywords
+  title           String
+  metaDescription String?
+  slug            String?
+  outline         String?  // JSON string of article outline/structure
+  content         String   // Full article body in markdown
+  wordCount       Int      @default(0)
+  readingTime     Int      @default(0) // minutes
+  seoScore        Int      @default(0) // 0-100
+  status          String   @default("draft") // draft, review, published, archived
+  provider        String   @default("openai")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 }

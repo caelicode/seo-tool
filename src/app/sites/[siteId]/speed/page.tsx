@@ -84,7 +84,7 @@ export default function SpeedPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
       </div>
     );
   }
@@ -93,7 +93,7 @@ export default function SpeedPage() {
     <div>
       <Link
         href={`/sites/${siteId}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to site
@@ -101,8 +101,8 @@ export default function SpeedPage() {
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">PageSpeed Monitor</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-900">PageSpeed Monitor</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Core Web Vitals and performance scores from Google PageSpeed Insights.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function SpeedPage() {
           <button
             onClick={() => runTest("mobile")}
             disabled={testing !== null}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-200 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 disabled:opacity-50"
           >
             {testing === "mobile" ? (
               <RefreshCw className="h-4 w-4 animate-spin" />
@@ -122,7 +122,7 @@ export default function SpeedPage() {
           <button
             onClick={() => runTest("desktop")}
             disabled={testing !== null}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
           >
             {testing === "desktop" ? (
               <RefreshCw className="h-4 w-4 animate-spin" />
@@ -166,7 +166,7 @@ export default function SpeedPage() {
       {/* Core Web Vitals detail */}
       {(data?.latestMobile || data?.latestDesktop) && (
         <div className="mb-6">
-          <h2 className="mb-4 text-lg font-semibold text-zinc-900">
+          <h2 className="mb-4 text-lg font-semibold text-slate-900">
             Core Web Vitals
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -218,14 +218,14 @@ export default function SpeedPage() {
       {/* Test history */}
       {data && data.history.length > 0 && (
         <div>
-          <h2 className="mb-4 text-lg font-semibold text-zinc-900">
+          <h2 className="mb-4 text-lg font-semibold text-slate-900">
             Test History
           </h2>
-          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-zinc-100 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                  <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3">Strategy</th>
                     <th className="px-4 py-3 text-right">Score</th>
@@ -235,12 +235,12 @@ export default function SpeedPage() {
                     <th className="px-4 py-3 text-right">TTFB</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-100">
+                <tbody className="divide-y divide-slate-100">
                   {data.history.map((test) => (
-                    <tr key={test.id} className="hover:bg-zinc-50">
-                      <td className="px-4 py-3 text-sm text-zinc-600">
+                    <tr key={test.id} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 text-sm text-slate-600">
                         <div className="flex items-center gap-1.5">
-                          <Clock className="h-3 w-3 text-zinc-400" />
+                          <Clock className="h-3 w-3 text-slate-400" />
                           {new Date(test.createdAt).toLocaleString()}
                         </div>
                       </td>
@@ -263,16 +263,16 @@ export default function SpeedPage() {
                       <td className="px-4 py-3 text-right">
                         <ScoreBadge score={test.performanceScore} />
                       </td>
-                      <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                      <td className="px-4 py-3 text-right text-sm text-slate-700">
                         {test.lcp !== null ? `${test.lcp}ms` : "-"}
                       </td>
-                      <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                      <td className="px-4 py-3 text-right text-sm text-slate-700">
                         {test.inp !== null ? `${test.inp}ms` : "-"}
                       </td>
-                      <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                      <td className="px-4 py-3 text-right text-sm text-slate-700">
                         {test.cls !== null ? test.cls.toFixed(3) : "-"}
                       </td>
-                      <td className="px-4 py-3 text-right text-sm text-zinc-700">
+                      <td className="px-4 py-3 text-right text-sm text-slate-700">
                         {test.ttfb !== null ? `${test.ttfb}ms` : "-"}
                       </td>
                     </tr>
@@ -286,16 +286,16 @@ export default function SpeedPage() {
 
       {/* Empty state */}
       {data && data.history.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-zinc-200 bg-white py-16">
-          <Gauge className="mb-3 h-10 w-10 text-zinc-300" />
-          <p className="text-sm font-medium text-zinc-600">No speed tests yet</p>
-          <p className="mt-1 text-sm text-zinc-400">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white py-16">
+          <Gauge className="mb-3 h-10 w-10 text-slate-300" />
+          <p className="text-sm font-medium text-slate-600">No speed tests yet</p>
+          <p className="mt-1 text-sm text-slate-400">
             Run a mobile or desktop test to see your Core Web Vitals and performance score.
           </p>
           <button
             onClick={() => runTest("mobile")}
             disabled={testing !== null}
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
           >
             <Play className="h-4 w-4" />
             Run First Test
@@ -318,31 +318,31 @@ function ScoreCard({
   const score = result?.performanceScore ?? null;
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-6">
+    <div className="rounded-xl border border-slate-200 bg-white p-6">
       <div className="mb-4 flex items-center gap-2">
-        <Icon className="h-5 w-5 text-zinc-600" />
-        <h3 className="text-sm font-semibold text-zinc-900">{title}</h3>
+        <Icon className="h-5 w-5 text-slate-600" />
+        <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
       </div>
       <div className="flex items-center gap-6">
         <ScoreRing score={score} />
         <div className="space-y-1 text-sm">
           {result ? (
             <>
-              <p className="text-zinc-600">
+              <p className="text-slate-600">
                 LCP: <span className="font-medium">{result.lcp ?? "-"}ms</span>
               </p>
-              <p className="text-zinc-600">
+              <p className="text-slate-600">
                 CLS: <span className="font-medium">{result.cls?.toFixed(3) ?? "-"}</span>
               </p>
-              <p className="text-zinc-600">
+              <p className="text-slate-600">
                 INP: <span className="font-medium">{result.inp ?? "-"}ms</span>
               </p>
-              <p className="mt-2 text-xs text-zinc-400">
+              <p className="mt-2 text-xs text-slate-400">
                 {new Date(result.createdAt).toLocaleString()}
               </p>
             </>
           ) : (
-            <p className="text-zinc-400">No test run yet</p>
+            <p className="text-slate-400">No test run yet</p>
           )}
         </div>
       </div>
@@ -434,7 +434,7 @@ function VitalCard({
   decimals?: number;
 }) {
   const getColor = (val: number | null) => {
-    if (val === null) return "text-zinc-400";
+    if (val === null) return "text-slate-400";
     if (val <= thresholds[0]) return "text-green-600";
     if (val <= thresholds[1]) return "text-amber-600";
     return "text-red-600";
@@ -446,26 +446,26 @@ function VitalCard({
   };
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-4">
+    <div className="rounded-xl border border-slate-200 bg-white p-4">
       <div className="mb-3">
-        <p className="text-sm font-semibold text-zinc-900">{label}</p>
-        <p className="text-xs text-zinc-400">{fullName}</p>
+        <p className="text-sm font-semibold text-slate-900">{label}</p>
+        <p className="text-xs text-slate-400">{fullName}</p>
       </div>
       <div className="flex gap-6">
         <div>
-          <p className="text-xs text-zinc-500">Mobile</p>
+          <p className="text-xs text-slate-500">Mobile</p>
           <p className={`text-lg font-bold ${getColor(mobile)}`}>
             {formatVal(mobile)}{unit && mobile !== null ? unit : ""}
           </p>
         </div>
         <div>
-          <p className="text-xs text-zinc-500">Desktop</p>
+          <p className="text-xs text-slate-500">Desktop</p>
           <p className={`text-lg font-bold ${getColor(desktop)}`}>
             {formatVal(desktop)}{unit && desktop !== null ? unit : ""}
           </p>
         </div>
       </div>
-      <div className="mt-2 text-xs text-zinc-400">
+      <div className="mt-2 text-xs text-slate-400">
         Good: &le;{thresholds[0]}{unit} / Poor: &gt;{thresholds[1]}{unit}
       </div>
     </div>
