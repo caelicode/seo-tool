@@ -11,6 +11,14 @@ import {
   XCircle,
   Clock,
   RefreshCw,
+  ChevronDown,
+  ChevronRight,
+  Wrench,
+  ExternalLink,
+  Lightbulb,
+  AlertCircle,
+  AlertTriangle as AlertTriangleIcon,
+  Info,
 } from "lucide-react";
 import { IssueBadge, IssueTypeBadge } from "@/components/issue-badge";
 
@@ -40,6 +48,14 @@ interface CrawlSummary {
   completedAt: string | null;
 }
 
+interface IssueGuide {
+  title: string;
+  description: string;
+  impact: "high" | "medium" | "low";
+  howToFix: string[];
+  resources: { label: string; url: string }[];
+}
+
 export default function CrawlPage() {
   const params = useParams();
   const siteId = params.siteId as string;
@@ -48,6 +64,9 @@ export default function CrawlPage() {
   const [starting, setStarting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [siteName, setSiteName] = useState("");
+  const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
+  const [guides, setGuides] = useState<Record<string, IssueGuide>>({});
+  const [loadingGuide, setLoadingGuide] = useState<string | null>(null);
 
   // Fetch site details and crawl history
   useEffect(() => {
@@ -123,6 +142,32 @@ export default function CrawlPage() {
     const res = await fetch(`/api/crawl/${crawlId}`);
     if (res.ok) {
       setActiveCrawl(await res.json());
+      setExpandedIssue(null);
+    }
+  };
+
+  const toggleIssue = async (issueId: string, issueType: string) => {
+    if (expandedIssue === issueId) {
+      setExpandedIssue(null);
+      return;
+    }
+
+    setExpandedIssue(issueId);
+
+    // Fetch guide if not cached
+    if (!guides[issueType]) {
+      setLoadingGuide(issueType);
+      try {
+        const res = await fetch(`/api/issues/guide?type=${issueType}`);
+        if (res.ok) {
+          const guide = await res.json();
+          setGuides((prev) => ({ ...prev, [issueType]: guide }));
+        }
+      } catch (err) {
+        console.error("Failed to fetch guide:", err);
+      } finally {
+        setLoadingGuide(null);
+      }
     }
   };
 
@@ -148,6 +193,19 @@ export default function CrawlPage() {
     {} as Record<string, number>
   );
 
+  // Group issues by page for organized view
+  const issuesByPage = activeCrawl?.issues.reduce(
+    (acc, issue) => {
+      const pageUrl = issue.page.url;
+      if (!acc[pageUrl]) {
+        acc[pageUrl] = { page: issue.page, issues: [] };
+      }
+      acc[pageUrl].issues.push(issue);
+      return acc;
+    },
+    {} as Record<string, { page: { id: string; url: string; title: string | null }; issues: typeof activeCrawl.issues }>
+  );
+
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -170,7 +228,7 @@ export default function CrawlPage() {
         <div>
           <h1 className="text-2xl font-bold text-zinc-900">Site Crawler</h1>
           <p className="mt-1 text-sm text-zinc-500">
-            Crawl pages to find SEO issues
+            Crawl pages to find SEO issues, with fix guides for every problem.
           </p>
         </div>
         <button
@@ -261,7 +319,7 @@ export default function CrawlPage() {
                 </div>
               </div>
 
-              {/* Issue summary */}
+              {/* Issue summary cards */}
               {issueSummary && Object.keys(issueSummary).length > 0 && (
                 <div className="mb-4 flex gap-3">
                   {issueSummary.critical && (
@@ -291,51 +349,156 @@ export default function CrawlPage() {
                 </div>
               )}
 
-              {/* Issues table */}
-              {activeCrawl.issues.length > 0 ? (
-                <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-zinc-100 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
-                        <th className="px-4 py-3">Severity</th>
-                        <th className="px-4 py-3">Type</th>
-                        <th className="px-4 py-3">Page</th>
-                        <th className="px-4 py-3">Detail</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-100">
-                      {activeCrawl.issues.map((issue) => (
-                        <tr key={issue.id} className="hover:bg-zinc-50">
-                          <td className="px-4 py-3">
-                            <IssueBadge severity={issue.severity} />
-                          </td>
-                          <td className="px-4 py-3">
-                            <IssueTypeBadge type={issue.type} />
-                          </td>
-                          <td className="max-w-[200px] truncate px-4 py-3 text-sm text-zinc-600">
-                            {issue.page.url}
-                          </td>
-                          <td className="max-w-[300px] truncate px-4 py-3 text-sm text-zinc-500">
-                            {issue.detail}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+              {/* Issues grouped by page */}
+              {activeCrawl.issues.length > 0 && issuesByPage ? (
+                <div className="space-y-4">
+                  {Object.entries(issuesByPage).map(([pageUrl, { page, issues }]) => (
+                    <div
+                      key={pageUrl}
+                      className="overflow-hidden rounded-xl border border-zinc-200 bg-white"
+                    >
+                      {/* Page header */}
+                      <div className="border-b border-zinc-100 bg-zinc-50 px-4 py-3">
+                        <p className="truncate text-sm font-medium text-zinc-800">
+                          {page.title || page.url}
+                        </p>
+                        <p className="truncate text-xs text-zinc-400">{page.url}</p>
+                      </div>
+
+                      {/* Issues for this page */}
+                      <div className="divide-y divide-zinc-100">
+                        {issues.map((issue) => (
+                          <div key={issue.id}>
+                            {/* Issue row (clickable) */}
+                            <button
+                              onClick={() => toggleIssue(issue.id, issue.type)}
+                              className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-zinc-50"
+                            >
+                              {expandedIssue === issue.id ? (
+                                <ChevronDown className="h-4 w-4 flex-shrink-0 text-zinc-400" />
+                              ) : (
+                                <ChevronRight className="h-4 w-4 flex-shrink-0 text-zinc-400" />
+                              )}
+                              <IssueBadge severity={issue.severity} />
+                              <IssueTypeBadge type={issue.type} />
+                              <span className="flex-1 truncate text-sm text-zinc-500">
+                                {issue.detail}
+                              </span>
+                              <Wrench className="h-4 w-4 flex-shrink-0 text-zinc-300" />
+                            </button>
+
+                            {/* Expanded fix guide */}
+                            {expandedIssue === issue.id && (
+                              <div className="border-t border-zinc-100 bg-zinc-50 px-4 py-4">
+                                {loadingGuide === issue.type ? (
+                                  <div className="flex items-center gap-2 text-sm text-zinc-500">
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    Loading fix guide...
+                                  </div>
+                                ) : guides[issue.type] ? (
+                                  <FixGuide guide={guides[issue.type]} />
+                                ) : (
+                                  <p className="text-sm text-zinc-500">
+                                    No guide available for this issue type.
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : activeCrawl.status === "running" ? (
                 <div className="flex h-32 items-center justify-center">
                   <Loader2 className="h-6 w-6 animate-spin text-zinc-400" />
                 </div>
               ) : (
-                <p className="text-center text-sm text-zinc-500">
-                  No issues found. Your site looks good!
-                </p>
+                <div className="flex flex-col items-center justify-center py-12">
+                  <CheckCircle2 className="mb-3 h-10 w-10 text-green-400" />
+                  <p className="text-sm font-medium text-zinc-600">
+                    No issues found. Your site looks good!
+                  </p>
+                </div>
               )}
             </div>
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function FixGuide({ guide }: { guide: IssueGuide }) {
+  const impactColors = {
+    high: "text-red-700 bg-red-50 border-red-200",
+    medium: "text-amber-700 bg-amber-50 border-amber-200",
+    low: "text-blue-700 bg-blue-50 border-blue-200",
+  };
+
+  const impactIcons = {
+    high: <AlertCircle className="h-4 w-4" />,
+    medium: <AlertTriangleIcon className="h-4 w-4" />,
+    low: <Info className="h-4 w-4" />,
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* Guide header */}
+      <div className="flex items-start justify-between">
+        <div>
+          <h4 className="text-sm font-semibold text-zinc-900">{guide.title}</h4>
+          <p className="mt-1 text-sm text-zinc-600">{guide.description}</p>
+        </div>
+        <span
+          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${impactColors[guide.impact]}`}
+        >
+          {impactIcons[guide.impact]}
+          {guide.impact} impact
+        </span>
+      </div>
+
+      {/* How to fix */}
+      <div className="rounded-lg border border-green-200 bg-green-50 p-4">
+        <div className="mb-2 flex items-center gap-2">
+          <Lightbulb className="h-4 w-4 text-green-700" />
+          <h5 className="text-sm font-semibold text-green-800">How to Fix</h5>
+        </div>
+        <ol className="space-y-2 pl-1">
+          {guide.howToFix.map((step, i) => (
+            <li key={i} className="flex gap-2 text-sm text-green-800">
+              <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-200 text-xs font-bold text-green-800">
+                {i + 1}
+              </span>
+              <span className="pt-0.5">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Resources */}
+      {guide.resources.length > 0 && (
+        <div>
+          <p className="mb-1 text-xs font-medium text-zinc-500">
+            Learn more:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {guide.resources.map((r, i) => (
+              <a
+                key={i}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
+              >
+                {r.label}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

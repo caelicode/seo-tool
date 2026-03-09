@@ -43,6 +43,9 @@ next-env.d.ts
 
 /src/generated/prisma
 
+# Server-side token store
+.data/
+
 # VM artifacts
 mnt/
 tmp/

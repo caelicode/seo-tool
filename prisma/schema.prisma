@@ -16,11 +16,12 @@ model Site {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  crawls     Crawl[]
-  pages      Page[]
-  keywords   Keyword[]
-  speedTests SpeedTest[]
-  searchData SearchAnalytics[]
+  crawls      Crawl[]
+  pages       Page[]
+  keywords    Keyword[]
+  speedTests  SpeedTest[]
+  searchData  SearchAnalytics[]
+  competitors Competitor[]
 }
 
 model Page {
@@ -125,4 +126,30 @@ model SpeedTest {
   createdAt        DateTime @default(now())
 
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+}
+
+model Competitor {
+  id        String   @id @default(cuid())
+  siteId    String
+  domain    String
+  name      String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  site     Site              @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  analyses CompetitorAnalysis[]
+
+  @@unique([siteId, domain])
+}
+
+model CompetitorAnalysis {
+  id           String   @id @default(cuid())
+  competitorId String
+  type         String   // "seo_overview", "content_gap", "speed_comparison"
+  data         String   // JSON string of analysis results
+  provider     String   @default("openai") // AI provider used
+  createdAt    DateTime @default(now())
+
+  competitor Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
 }

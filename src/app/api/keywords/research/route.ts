@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const provider = body.provider || "anthropic";
+    const provider = body.provider || "openai";
     const businessContext = `
 Business Type: ${body.business}
 Location: ${body.location}

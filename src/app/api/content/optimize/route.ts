@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate provider choice
-    const provider: AIProvider = body.provider || "anthropic";
+    const provider: AIProvider = body.provider || "openai";
     if (provider !== "anthropic" && provider !== "openai") {
       return NextResponse.json(
         { error: "provider must be 'anthropic' or 'openai'" },

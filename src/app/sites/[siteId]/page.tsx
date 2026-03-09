@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -14,6 +14,8 @@ import {
   Gauge,
   Target,
   Sparkles,
+  Heart,
+  Users,
 } from "lucide-react";
 
 interface SiteDetail {
@@ -60,6 +62,22 @@ export default function SiteDetailPage() {
   const [site, setSite] = useState<SiteDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [healthScore, setHealthScore] = useState<{
+    score: number;
+    maxScore: number;
+    grade: string;
+    categories: { category: string; score: number; maxScore: number; details: string }[];
+    recommendations: string[];
+  } | null>(null);
+
+  const fetchHealth = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/sites/${siteId}/health`);
+      if (res.ok) setHealthScore(await res.json());
+    } catch {
+      // Non-critical
+    }
+  }, [siteId]);
 
   useEffect(() => {
     const fetchSite = async () => {
@@ -78,7 +96,8 @@ export default function SiteDetailPage() {
     };
 
     fetchSite();
-  }, [siteId]);
+    fetchHealth();
+  }, [siteId, fetchHealth]);
 
   if (loading) {
     return (
@@ -144,6 +163,65 @@ export default function SiteDetailPage() {
         <StatCard icon={Gauge} label="Speed Tests" value={site._count.speedTests} />
       </div>
 
+      {/* SEO Health Score */}
+      {healthScore && (
+        <div className="mb-8 rounded-xl border border-zinc-200 bg-white p-6">
+          <div className="flex items-start gap-6">
+            {/* Score ring */}
+            <div className="flex-shrink-0">
+              <HealthScoreRing score={healthScore.score} grade={healthScore.grade} />
+            </div>
+
+            {/* Category breakdown */}
+            <div className="flex-1">
+              <div className="mb-1 flex items-center gap-2">
+                <Heart className="h-5 w-5 text-zinc-600" />
+                <h2 className="text-lg font-semibold text-zinc-900">SEO Health Score</h2>
+              </div>
+              <div className="mt-3 space-y-2">
+                {healthScore.categories.map((cat) => (
+                  <div key={cat.category}>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-zinc-600">{cat.category}</span>
+                      <span className="font-medium text-zinc-900">
+                        {cat.score}/{cat.maxScore}
+                      </span>
+                    </div>
+                    <div className="mt-1 h-2 rounded-full bg-zinc-100">
+                      <div
+                        className={`h-2 rounded-full ${
+                          cat.score / cat.maxScore >= 0.7
+                            ? "bg-green-500"
+                            : cat.score / cat.maxScore >= 0.4
+                            ? "bg-amber-500"
+                            : "bg-red-500"
+                        }`}
+                        style={{ width: `${(cat.score / cat.maxScore) * 100}%` }}
+                      />
+                    </div>
+                    <p className="mt-0.5 text-xs text-zinc-400">{cat.details}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Recommendations */}
+              {healthScore.recommendations.length > 0 && (
+                <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                  <p className="mb-1 text-xs font-semibold text-amber-800">Top Recommendations</p>
+                  <ul className="space-y-1">
+                    {healthScore.recommendations.map((rec, i) => (
+                      <li key={i} className="text-xs text-amber-700">
+                        {rec}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Feature cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <FeatureCard
@@ -188,6 +266,13 @@ export default function SiteDetailPage() {
           description="Get AI-powered SEO suggestions for titles, descriptions, and content."
           status="Ready"
           href={`/sites/${site.id}/content`}
+        />
+        <FeatureCard
+          icon={Users}
+          title="Competitor Tracking"
+          description="Track competitors and get AI-powered competitive analysis and gap identification."
+          status="Ready"
+          href={`/sites/${site.id}/competitors`}
         />
       </div>
 
@@ -335,6 +420,53 @@ function IndexBadge({ status }: { status: string | null }) {
     <span className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${className}`}>
       {status ?? "unknown"}
     </span>
+  );
+}
+
+function HealthScoreRing({ score, grade }: { score: number; grade: string }) {
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (score / 100) * circumference;
+
+  const color =
+    score >= 80
+      ? "#16a34a"
+      : score >= 60
+      ? "#eab308"
+      : score >= 40
+      ? "#f97316"
+      : "#dc2626";
+
+  return (
+    <div className="relative flex h-24 w-24 items-center justify-center">
+      <svg width="96" height="96" className="-rotate-90">
+        <circle
+          cx="48"
+          cy="48"
+          r={radius}
+          fill="none"
+          stroke="#f4f4f5"
+          strokeWidth="8"
+        />
+        <circle
+          cx="48"
+          cy="48"
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center">
+        <span className="text-2xl font-bold" style={{ color }}>
+          {grade}
+        </span>
+        <span className="text-xs text-zinc-500">{score}/100</span>
+      </div>
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exchangeCode } from "@/lib/gsc";
 import { cookies } from "next/headers";
+import { saveTokens } from "@/lib/gsc-tokens";
 
 // GET /api/gsc/callback - Google OAuth callback
 // Exchanges the auth code for tokens and stores them in a secure cookie.
@@ -22,6 +23,9 @@ export async function GET(req: NextRequest) {
 
   try {
     const tokens = await exchangeCode(code);
+
+    // Persist tokens server-side for cron jobs (no cookies available)
+    saveTokens(tokens);
 
     // Store tokens in httpOnly cookies (secure for internal tool)
     const cookieStore = await cookies();

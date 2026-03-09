@@ -145,11 +145,12 @@ export interface SEOAnalysis {
  */
 export function getAvailableProviders(): { provider: AIProvider; label: string }[] {
   const providers: { provider: AIProvider; label: string }[] = [];
-  if (process.env.ANTHROPIC_API_KEY) {
-    providers.push({ provider: "anthropic", label: "Claude (Anthropic)" });
-  }
+  // OpenAI listed first as default provider
   if (process.env.OPENAI_API_KEY) {
     providers.push({ provider: "openai", label: "GPT-4o (OpenAI)" });
+  }
+  if (process.env.ANTHROPIC_API_KEY) {
+    providers.push({ provider: "anthropic", label: "Claude (Anthropic)" });
   }
   return providers;
 }
