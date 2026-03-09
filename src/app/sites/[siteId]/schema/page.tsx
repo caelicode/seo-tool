@@ -175,7 +175,7 @@ export default function SchemaAnalysisPage() {
               onChange={(e) => setProvider(e.target.value)}
               className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none"
             >
-              <option value="openai">GPT-5.3 (OpenAI)</option>
+              <option value="openai">GPT-4.1 mini (OpenAI)</option>
               <option value="anthropic">Claude (Anthropic)</option>
             </select>
           </div>
@@ -228,7 +228,7 @@ export default function SchemaAnalysisPage() {
                 <p className="mt-1 text-sm text-zinc-500">
                   URL: {result.pageUrl}
                   <span className="ml-2 rounded bg-zinc-100 px-1.5 py-0.5 text-xs font-medium text-zinc-600">
-                    {result.provider === "openai" ? "GPT-5.3" : "Claude"}
+                    {result.provider === "openai" ? "GPT-4.1 mini" : "Claude"}
                   </span>
                 </p>
                 {result.aiAnalysis.pageType && (

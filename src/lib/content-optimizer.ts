@@ -147,7 +147,7 @@ export function getAvailableProviders(): { provider: AIProvider; label: string }
   const providers: { provider: AIProvider; label: string }[] = [];
   // OpenAI listed first as default provider
   if (process.env.OPENAI_API_KEY) {
-    providers.push({ provider: "openai", label: "GPT-5.3 Instant (OpenAI)" });
+    providers.push({ provider: "openai", label: "GPT-4.1 mini (OpenAI)" });
   }
   if (process.env.ANTHROPIC_API_KEY) {
     providers.push({ provider: "anthropic", label: "Claude (Anthropic)" });
@@ -336,7 +336,7 @@ async function analyzeWithAnthropic(
 }
 
 /**
- * Analyze content using OpenAI GPT-5.3 Instant.
+ * Analyze content using OpenAI GPT-4.1 mini.
  */
 async function analyzeWithOpenAI(
   pageContent: PageContent,
@@ -353,7 +353,7 @@ async function analyzeWithOpenAI(
   const pageContext = buildPageContext(pageContent, targetKeyword);
 
   const response = await client.chat.completions.create({
-    model: "gpt-5.3-chat-latest",
+    model: "gpt-4.1-mini",
     max_tokens: 2000,
     response_format: { type: "json_object" },
     messages: [

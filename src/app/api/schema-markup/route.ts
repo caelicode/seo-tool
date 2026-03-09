@@ -215,7 +215,7 @@ Current Issues: ${JSON.stringify(issues)}
     if (provider === "openai" && process.env.OPENAI_API_KEY) {
       const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
       const completion = await client.chat.completions.create({
-        model: "gpt-5.3-chat-latest",
+        model: "gpt-4.1-mini",
         max_tokens: 2000,
         response_format: { type: "json_object" },
         messages: [

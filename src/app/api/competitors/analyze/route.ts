@@ -99,7 +99,7 @@ Provide your analysis as JSON with this structure:
       }
       const client = new OpenAI({ apiKey });
       const response = await client.chat.completions.create({
-        model: "gpt-5.3-chat-latest",
+        model: "gpt-4.1-mini",
         max_tokens: 3000,
         response_format: { type: "json_object" },
         messages: [

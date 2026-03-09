@@ -276,7 +276,7 @@ export default function ContentOptimizerPage() {
               <p className="mt-1 text-sm text-zinc-500">
                 Analyzed: {result.url}
                 <span className="ml-2 rounded bg-zinc-100 px-1.5 py-0.5 text-xs font-medium text-zinc-600">
-                  {result.provider === "openai" ? "GPT-5.3" : "Claude"}
+                  {result.provider === "openai" ? "GPT-4.1 mini" : "Claude"}
                 </span>
               </p>
               <div className="mt-3">
