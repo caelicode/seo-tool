@@ -126,23 +126,28 @@ export async function GET(
     }
 
     // 3. Page Performance (20 points max)
+    // performanceScore is stored as 0-100 (e.g., 88 means 88%)
     if (site.speedTests.length > 0) {
       const latestDesktop = site.speedTests.find((t) => t.strategy === "desktop");
       const latestMobile = site.speedTests.find((t) => t.strategy === "mobile");
 
-      const desktopScore = latestDesktop ? latestDesktop.performanceScore * 10 : 0;
-      const mobileScore = latestMobile ? latestMobile.performanceScore * 10 : 0;
+      // Normalize scores to 0-1 range for weighted calculation
+      const desktopNorm = latestDesktop ? latestDesktop.performanceScore / 100 : 0;
+      const mobileNorm = latestMobile ? latestMobile.performanceScore / 100 : 0;
 
-      // Weight mobile more (60/40)
-      const perfScore = mobileScore > 0 && desktopScore > 0
-        ? (mobileScore * 0.6 + desktopScore * 0.4) * 2
-        : (mobileScore || desktopScore) * 2;
+      // Weight mobile more (60/40), then scale to 20 points max
+      let perfScore: number;
+      if (mobileNorm > 0 && desktopNorm > 0) {
+        perfScore = (mobileNorm * 0.6 + desktopNorm * 0.4) * 20;
+      } else {
+        perfScore = (mobileNorm || desktopNorm) * 20;
+      }
 
       scores.push({
         category: "Page Performance",
         score: Math.min(20, Math.round(perfScore)),
         maxScore: 20,
-        details: `Desktop: ${latestDesktop ? Math.round(latestDesktop.performanceScore * 100) : "N/A"}%, Mobile: ${latestMobile ? Math.round(latestMobile.performanceScore * 100) : "N/A"}%`,
+        details: `Desktop: ${latestDesktop ? latestDesktop.performanceScore : "N/A"}%, Mobile: ${latestMobile ? latestMobile.performanceScore : "N/A"}%`,
       });
     } else {
       scores.push({
