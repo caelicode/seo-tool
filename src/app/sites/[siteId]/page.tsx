@@ -21,6 +21,7 @@ import {
   Code,
   PenTool,
   Tags,
+  Brain,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -200,6 +201,7 @@ export default function SiteDetailPage() {
       <div className="mb-8">
         <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400">Tools</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ToolCard icon={Brain} title="SEO Autopilot" description="Full strategy: competitors, keywords, 30-day content calendar" status="New" href={`/sites/${site.id}/strategy`} color="indigo" highlight />
           <ToolCard icon={Activity} title="Site Crawler" description="Find SEO issues, broken links, and missing metadata" status={lastCrawl ? `Last: ${lastCrawl.status}` : "Not run yet"} href={`/sites/${site.id}/crawl`} color="blue" />
           <ToolCard icon={Search} title="Search Console" description="View search performance, clicks, and impressions" status={site.gscPropertyId ? "Connected" : "Not connected"} href={`/sites/${site.id}/search`} color="green" />
           <ToolCard icon={Target} title="Keywords" description="Track rankings, position changes, and visibility" status={site._count.keywords > 0 ? `${site._count.keywords} tracked` : "No keywords yet"} href={`/sites/${site.id}/keywords`} color="violet" />

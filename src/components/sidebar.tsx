@@ -16,6 +16,7 @@ import {
   Code,
   PenTool,
   Tags,
+  Brain,
   TrendingUp,
   ChevronRight,
 } from "lucide-react";
@@ -27,6 +28,7 @@ const mainNav = [
 
 const siteNav = [
   { href: "", label: "Overview", icon: LayoutDashboard },
+  { href: "/strategy", label: "SEO Autopilot", icon: Brain },
   { href: "/crawl", label: "Site Crawler", icon: Activity },
   { href: "/search", label: "Search Console", icon: Search },
   { href: "/keywords", label: "Keywords", icon: Target },

@@ -109,8 +109,18 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error("GSC sync error:", error);
+
+    // Provide a more helpful error message for permission issues
+    const errMsg = error instanceof Error ? error.message : String(error);
+    const isPermError = errMsg.includes("permission") || errMsg.includes("403");
+
     return NextResponse.json(
-      { error: "Failed to sync GSC data" },
+      {
+        error: isPermError
+          ? "GSC permission denied. The auto-resolver could not find a matching property. Verify your Google account has access to this site in Google Search Console."
+          : "Failed to sync GSC data",
+        details: errMsg,
+      },
       { status: 500 }
     );
   }

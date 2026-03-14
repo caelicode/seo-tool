@@ -54,30 +54,48 @@ export async function POST(req: NextRequest) {
     let resolvedSitemapUrl: string | null = null;
     let sitemapXml = "";
     let sitemapStatusCode = 0;
+    let lastError = "";
+
+    // Try multiple user agents in case bot protection blocks the first
+    const userAgents = [
+      "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "SEOTool/1.0 (Sitemap Validator)",
+    ];
 
     for (const tryUrl of urlsToTry) {
-      try {
-        const response = await fetch(tryUrl, {
-          headers: { "User-Agent": "SEOTool/1.0 (Sitemap Validator)" },
-          signal: AbortSignal.timeout(15000),
-          redirect: "follow",
-        });
-        sitemapStatusCode = response.status;
-        if (response.ok) {
-          sitemapXml = await response.text();
-          resolvedSitemapUrl = tryUrl;
-          break;
+      for (const ua of userAgents) {
+        try {
+          const response = await fetch(tryUrl, {
+            headers: {
+              "User-Agent": ua,
+              "Accept": "application/xml, text/xml, */*",
+            },
+            signal: AbortSignal.timeout(15000),
+            redirect: "follow",
+          });
+          sitemapStatusCode = response.status;
+          if (response.ok) {
+            sitemapXml = await response.text();
+            resolvedSitemapUrl = tryUrl;
+            break;
+          } else {
+            lastError = `HTTP ${response.status} from ${tryUrl}`;
+          }
+        } catch (fetchErr) {
+          lastError = fetchErr instanceof Error ? fetchErr.message : "Fetch failed";
+          continue;
         }
-      } catch {
-        continue;
       }
+      if (resolvedSitemapUrl) break;
     }
 
     if (!resolvedSitemapUrl || !sitemapXml) {
       return NextResponse.json({
-        error: "No sitemap found",
+        error: `No sitemap found. ${lastError}`,
         triedUrls: urlsToTry,
         statusCode: sitemapStatusCode,
+        hint: "If the sitemap loads in your browser but not here, your hosting may be blocking server-side requests. Check Cloudflare or firewall settings.",
       }, { status: 404 });
     }
 

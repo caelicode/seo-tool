@@ -58,6 +58,7 @@ export default function KeywordsPage() {
   const [newKeyword, setNewKeyword] = useState("");
   const [newPageUrl, setNewPageUrl] = useState("");
   const [adding, setAdding] = useState(false);
+  const [siteDomain, setSiteDomain] = useState("");
 
   // Research state
   const [showResearch, setShowResearch] = useState(false);
@@ -84,7 +85,20 @@ export default function KeywordsPage() {
 
   useEffect(() => {
     fetchKeywords();
-  }, [fetchKeywords]);
+    // Fetch site domain for auto-filling URL on keyword add
+    const fetchSite = async () => {
+      try {
+        const res = await fetch(`/api/sites/${siteId}`);
+        if (res.ok) {
+          const site = await res.json();
+          setSiteDomain(site.domain || "");
+        }
+      } catch {
+        // Non-critical
+      }
+    };
+    fetchSite();
+  }, [fetchKeywords, siteId]);
 
   const handleSync = async (autoDiscover = false) => {
     setSyncing(true);
@@ -169,7 +183,7 @@ export default function KeywordsPage() {
           business: researchBusiness.trim(),
           location: researchLocation.trim(),
           services: researchServices.trim() || undefined,
-          website: undefined, // Could pull from site data
+          website: siteDomain ? `https://${siteDomain}` : undefined,
         }),
       });
 
@@ -213,6 +227,9 @@ export default function KeywordsPage() {
     setError(null);
     let added = 0;
 
+    // Auto-generate the site URL from the domain
+    const siteUrl = siteDomain ? `https://${siteDomain}/` : undefined;
+
     // Get existing keywords to avoid duplicates
     const existingSet = new Set(keywords.map((k) => k.keyword.toLowerCase()));
 
@@ -222,7 +239,7 @@ export default function KeywordsPage() {
         const res = await fetch("/api/keywords", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ siteId, keyword }),
+          body: JSON.stringify({ siteId, keyword, pageUrl: siteUrl }),
         });
         if (res.ok) added++;
       } catch {
@@ -298,7 +315,13 @@ export default function KeywordsPage() {
             Research Keywords
           </button>
           <button
-            onClick={() => setShowAddForm(!showAddForm)}
+            onClick={() => {
+              setShowAddForm(!showAddForm);
+              // Pre-fill URL when opening the add form
+              if (!showAddForm && siteDomain && !newPageUrl) {
+                setNewPageUrl(`https://${siteDomain}/`);
+              }
+            }}
             className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
           >
             <Plus className="h-4 w-4" />

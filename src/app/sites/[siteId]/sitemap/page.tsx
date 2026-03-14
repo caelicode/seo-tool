@@ -74,7 +74,9 @@ export default function SitemapPage() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Validation failed");
+        const msg = data.error || "Validation failed";
+        const hint = data.hint ? ` ${data.hint}` : "";
+        throw new Error(`${msg}${hint}`);
       }
 
       setResult(await res.json());
